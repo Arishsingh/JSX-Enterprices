@@ -11,7 +11,7 @@ export default function Contact() {
           <div className="space-y-8">
             <div>
               <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: '#4A7C59' }}>Get In Touch</p>
-              <h2 className="text-[2.1rem] font-bold text-slate-900 tracking-tight mb-6">Contact &amp; Enquiry</h2>
+              <h2 className="text-[1.6rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight mb-6">Contact &amp; Enquiry</h2>
             </div>
             <div className="space-y-4">
               {[

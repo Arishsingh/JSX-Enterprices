@@ -26,8 +26,12 @@ export default function Newsletter() {
           <div>
             <div className="flex flex-col sm:flex-row bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-full p-2 sm:p-1.5 border border-white/10 gap-2 sm:gap-0">
               <input
+                id="newsletter-email"
+                name="email"
                 type="email"
                 placeholder="Enter your email address"
+                aria-label="Email address for newsletter"
+                autoComplete="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 className="flex-1 px-4 py-2.5 sm:py-2 text-[13px] text-white bg-transparent outline-none placeholder:text-white/35 rounded-xl sm:rounded-none"

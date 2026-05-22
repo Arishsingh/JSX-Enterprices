@@ -6,14 +6,14 @@ export default function ServicesOverview() {
   return (
     <section id="services" className="bg-[#f5f6f7] py-12 sm:py-16 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8 sm:mb-10">
+        <div className="flex items-end justify-between mb-8 sm:mb-10">
           <div>
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>What We Offer</p>
-            <h2 className="text-[1.8rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Our Services</h2>
+            <p className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase mb-2 sm:mb-2.5" style={{ color: '#4A7C59' }}>What We Offer</p>
+            <h2 className="text-[1.35rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Our Services</h2>
           </div>
-          <Link href="#contact" className="self-start sm:self-auto">
-            <button className="group cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm">
-              View All Services <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
+          <Link href="#contact" className="flex-shrink-0">
+            <button className="group cursor-pointer flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 bg-white text-[11px] sm:text-[13px] font-medium text-slate-700 transition-all shadow-sm whitespace-nowrap">
+              <span className="sm:hidden">View All</span><span className="hidden sm:inline">View All Services</span> <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
             </button>
           </Link>
         </div>

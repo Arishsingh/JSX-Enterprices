@@ -9,9 +9,9 @@ export default function Products() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
           <div>
             <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>Supply &amp; Equipment</p>
-            <h2 className="text-[1.8rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Products &amp; Equipment</h2>
+            <h2 className="text-[1.5rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Products &amp; Equipment</h2>
           </div>
-          <button className="group cursor-pointer self-start sm:self-auto flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm whitespace-nowrap">
+          <button className="group cursor-pointer self-start sm:self-auto flex-shrink-0 flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-slate-200 bg-white text-[12px] sm:text-[13px] font-medium text-slate-700 transition-all shadow-sm whitespace-nowrap">
             Browse All Products <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
           </button>
         </div>
