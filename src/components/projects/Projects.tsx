@@ -4,14 +4,14 @@ import { projectsData } from '@/data'
 
 export default function Projects() {
   return (
-    <section id="projects" className="bg-white py-16 scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-end justify-between mb-8">
+    <section id="projects" className="bg-white py-12 sm:py-16 scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
           <div>
             <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>Portfolio</p>
-            <h2 className="text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Latest Projects</h2>
+            <h2 className="text-[1.8rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Latest Projects</h2>
           </div>
-          <button className="group cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm">
+          <button className="group cursor-pointer self-start sm:self-auto flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm whitespace-nowrap">
             Explore All Projects <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
           </button>
         </div>

@@ -8,10 +8,10 @@ export default function EnquiryForm() {
   const [form, setForm] = useState({ name: '', company: '', service: '', phone: '', message: '' })
 
   return (
-    <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm">
       <h3 className="text-lg font-bold text-slate-900 mb-6">Send an Enquiry</h3>
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1.5">Name</label>
             <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-green-400 transition-colors" />

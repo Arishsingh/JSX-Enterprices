@@ -5,9 +5,9 @@ import EnquiryForm from './EnquiryForm'
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-[#f5f6f7] py-20 scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <section id="contact" className="bg-[#f5f6f7] py-12 sm:py-20 scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           <div className="space-y-8">
             <div>
               <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: '#4A7C59' }}>Get In Touch</p>
@@ -29,7 +29,7 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center justify-center sm:justify-start gap-3 pt-2">
               {[{ Icon: IconLinkedIn }, { Icon: IconFacebook }, { Icon: IconInstagram }, { Icon: IconYoutube }].map(({ Icon }, i) => (
                 <Link key={i} href="#" className="w-10 h-10 rounded-xl border-2 border-white flex items-center justify-center transition-colors shadow-[0_0_0_1px_rgba(74,124,89,0.14),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#EEF6F0', color: '#4A7C59' }}>
                   <Icon className="w-4 h-4" />

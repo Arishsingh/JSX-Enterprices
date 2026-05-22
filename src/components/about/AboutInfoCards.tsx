@@ -2,7 +2,7 @@ import { MapPin, Globe, Wrench } from 'lucide-react'
 
 export default function AboutInfoCards() {
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
         <div className="flex items-center gap-2 mb-1.5">
           <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#EEF6F0' }}>
