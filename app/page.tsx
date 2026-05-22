@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, MapPin, Mail, CheckCircle2, ClipboardList, Building2, Award, Settings2, Wrench } from 'lucide-react'
+import { ArrowRight, MapPin, Mail, Phone, CheckCircle2, ClipboardCheck, Globe, Trophy, ShieldCheck, Flame, Droplets, Waves, Recycle, Wrench, Hotel, Factory, Home, HeartPulse, Briefcase, Landmark, FileText, Search, FileCheck, HardHat, Rocket } from 'lucide-react'
 
 // ─── ICON HELPERS ─────────────────────────────────────────────────────────────
 
@@ -60,46 +60,46 @@ function PlaceholderImg({ className }: { className?: string }) {
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
 const heroStats = [
-  { Icon: ClipboardList, value: '120+', label: 'Projects Completed', color: '#4A7C59', bg: '#EEF6F0', ring: 'rgba(74,124,89,0.14)' },
-  { Icon: Building2,     value: '18+',  label: 'Cities Served',       color: '#2A7BA0', bg: '#EBF5FA', ring: 'rgba(42,123,160,0.14)' },
-  { Icon: Award,         value: '10+',  label: 'Years Experience',     color: '#B87333', bg: '#FDF5EC', ring: 'rgba(184,115,51,0.14)' },
-  { Icon: Settings2,     value: '100%', label: 'End-to-End Execution', color: '#6B4FA0', bg: '#F2EEFC', ring: 'rgba(107,79,160,0.14)' },
+  { Icon: ClipboardCheck, value: '120+', label: 'Projects Completed',   color: '#4A7C59', bg: '#EEF6F0', ring: 'rgba(74,124,89,0.14)' },
+  { Icon: Globe,          value: '18+',  label: 'Cities Served',        color: '#2A7BA0', bg: '#EBF5FA', ring: 'rgba(42,123,160,0.14)' },
+  { Icon: Trophy,         value: '10+',  label: 'Years Experience',      color: '#B87333', bg: '#FDF5EC', ring: 'rgba(184,115,51,0.14)' },
+  { Icon: ShieldCheck,    value: '100%', label: 'End-to-End Execution', color: '#6B4FA0', bg: '#F2EEFC', ring: 'rgba(107,79,160,0.14)' },
 ]
 
 const servicesOverviewData = [
   {
     name: 'Plumbing', desc: 'Supply, Drainage\n& Sanitary Solutions', color: '#4A7C59', bg: '#EEF6F0', ring: 'rgba(74,124,89,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h3" /><rect x="7" y="9" width="3" height="6" rx="1" /><path d="M10 12h4" /><rect x="14" y="9" width="3" height="6" rx="1" /><path d="M17 12h3" /><path d="M8 9V6h8v3" /></svg>,
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9h4v6H3z"/><path d="M17 9h4v6h-4z"/><path d="M7 12h10"/><path d="M12 7V3"/><path d="M12 21v-4"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg>,
   },
   {
     name: 'Fire Fighting', desc: 'Hydrant, Sprinkler\n& Alarm Systems', color: '#B94040', bg: '#FDF0F0', ring: 'rgba(185,64,64,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M8 21h8" /><path d="M12 21V8" /><path d="M7 8h10" /><path d="M9 8V5h6v3" /><path d="M15 5h2v2" /><ellipse cx="12" cy="12" rx="3" ry="1.5" /></svg>,
+    icon: <Flame strokeWidth={1.7} />,
   },
   {
     name: 'Water Treatment', desc: 'WTP, RO, Softener\n& DM Plants', color: '#2A7BA0', bg: '#EBF5FA', ring: 'rgba(42,123,160,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3C12 3 6 9 6 14a6 6 0 0 0 12 0c0-5-6-11-6-11z" /></svg>,
+    icon: <Droplets strokeWidth={1.7} />,
   },
   {
     name: 'Waste Water', desc: 'STP, ETP, MBR, MBBR\n& Grey Water', color: '#3D7A5F', bg: '#EEF7F2', ring: 'rgba(61,122,95,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3C12 3 6 9 6 14a6 6 0 0 0 12 0c0-5-6-11-6-11z" /><path d="M9.5 14.5C10 12 12 10 14.5 9.5" strokeWidth="1.3" /></svg>,
+    icon: <Recycle strokeWidth={1.7} />,
   },
   {
     name: 'AMC / O&M', desc: 'Inspections, Repairs\n& Maintenance', color: '#5A6270', bg: '#F2F4F6', ring: 'rgba(90,98,112,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>,
+    icon: <Wrench strokeWidth={1.7} />,
   },
   {
     name: 'Water Features', desc: 'Pool, Lake Revival\n& RWH Solutions', color: '#0E7490', bg: '#E8F5F9', ring: 'rgba(14,116,144,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4C12 4 7 9 7 13.5a5 5 0 0 0 10 0C17 9 12 4 12 4z" /><path d="M8 20c1.3-1 2.7-1.5 4-1.5s2.7.5 4 1.5" strokeWidth="1.5" /></svg>,
+    icon: <Waves strokeWidth={1.7} />,
   },
 ]
 
 const industryData = [
-  { label: 'Hospitality', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18" /><path d="M5 21V7l7-4 7 4v14" /><path d="M9 21v-6h6v6" /></svg> },
-  { label: 'Industrial', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V3H8v4" /><path d="M12 11v4M8 11v4M16 11v4" /></svg> },
-  { label: 'Residential', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg> },
-  { label: 'Healthcare', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg> },
-  { label: 'Commercial', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="2" width="18" height="20" rx="2" /><path d="M8 6h8M8 10h8M8 14h8M10 18h4" /></svg> },
-  { label: 'Infrastructure', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h20M4 20V10M20 20V10M4 10C4 10 8 6 12 6s8 4 8 4M12 6v14M8 10v10M16 10v10" /></svg> },
+  { label: 'Hospitality',    icon: <Hotel       strokeWidth={1.5} /> },
+  { label: 'Industrial',     icon: <Factory     strokeWidth={1.5} /> },
+  { label: 'Residential',    icon: <Home        strokeWidth={1.5} /> },
+  { label: 'Healthcare',     icon: <HeartPulse  strokeWidth={1.5} /> },
+  { label: 'Commercial',     icon: <Briefcase   strokeWidth={1.5} /> },
+  { label: 'Infrastructure', icon: <Landmark    strokeWidth={1.5} /> },
 ]
 
 const aboutPoints = [
@@ -125,11 +125,11 @@ const productsOverview = [
 ]
 
 const processSteps = [
-  { num: '01', title: 'Scope & Contract', desc: 'Understanding requirements, site assessment, and formalising the project agreement.' },
-  { num: '02', title: 'Site Inspection', desc: 'Detailed drawings, P&ID, and engineering design finalisation.' },
-  { num: '03', title: 'Signoff', desc: 'GA, GFC, and P&ID approval before procurement and fabrication begins.' },
-  { num: '04', title: 'Execution', desc: 'Erection, installation, civil work, and skilled labour deployment.' },
-  { num: '05', title: 'Commission', desc: 'System testing, performance validation, and final handover to client.' },
+  { num: '01', title: 'Scope & Contract', desc: 'Understanding requirements, site assessment, and formalising the project agreement.',  Icon: FileText   },
+  { num: '02', title: 'Site Inspection',  desc: 'Detailed drawings, P&ID, and engineering design finalisation.',                        Icon: Search     },
+  { num: '03', title: 'Signoff',          desc: 'GA, GFC, and P&ID approval before procurement and fabrication begins.',                Icon: FileCheck  },
+  { num: '04', title: 'Execution',        desc: 'Erection, installation, civil work, and skilled labour deployment.',                   Icon: HardHat    },
+  { num: '05', title: 'Commission',       desc: 'System testing, performance validation, and final handover to client.',                 Icon: Rocket     },
 ]
 
 const serviceKeys = ['Plumbing', 'Fire Fighting', 'Water Treatment', 'Waste Water', 'AMC / O&M', 'Water Features', 'Pump Systems', 'FRP Products']
@@ -166,7 +166,7 @@ export default function JSKWebsite() {
             ))}
           </nav>
           <Link href="#contact" className="flex-shrink-0">
-            <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium text-white transition-all duration-200 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
+            <button className="cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium text-white transition-all duration-200 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
               Get a Quote <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </Link>
@@ -195,12 +195,12 @@ export default function JSKWebsite() {
                 </p>
                 <div className="flex items-center gap-5">
                   <Link href="#services">
-                    <button className="group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl text-white text-[13.5px] font-medium transition-all duration-200 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
+                    <button className="cursor-pointer group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl text-white text-[13.5px] font-medium transition-all duration-200 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
                       Explore Solutions <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
                     </button>
                   </Link>
                   <Link href="#projects">
-                    <button className="text-white/65 hover:text-white/90 text-[13.5px] font-medium transition-colors duration-200">View Projects</button>
+                    <button className="cursor-pointer text-white/65 hover:text-white/90 text-[13.5px] font-medium transition-colors duration-200">View Projects</button>
                   </Link>
                 </div>
               </div>
@@ -247,14 +247,14 @@ export default function JSKWebsite() {
                 <h2 className="text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Our Services</h2>
               </div>
               <Link href="#contact">
-                <button className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 hover:border-slate-400 transition-all shadow-sm">
-                  View All Services <ArrowRight className="w-3.5 h-3.5" />
+                <button className="group cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm">
+                  View All Services <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
                 </button>
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {servicesOverviewData.map((s) => (
-                <div key={s.name} className="bg-white rounded-2xl border border-slate-100 p-6 hover:shadow-md hover:border-slate-200 transition-all duration-300 cursor-pointer">
+                <div key={s.name} className="bg-white rounded-2xl border border-slate-100 p-6 hover:shadow-sm transition-all duration-300 cursor-pointer">
                   <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center mb-5 [&>svg]:w-6 [&>svg]:h-6" style={{ backgroundColor: s.bg, color: s.color, boxShadow: `0 0 0 1px ${s.ring}, 0 2px 1px 0 rgba(0,0,0,0.04)` }}>
                     {s.icon}
                   </div>
@@ -302,9 +302,7 @@ export default function JSKWebsite() {
                   <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
                     <div className="flex items-center gap-2 mb-1.5">
                       <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#EEF6F0' }}>
-                        <svg className="w-3.5 h-3.5" style={{ color: '#4A7C59' }} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" strokeLinecap="round">
-                          <circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                        </svg>
+                        <Globe className="w-3.5 h-3.5" style={{ color: '#4A7C59' }} strokeWidth={1.8} />
                       </div>
                       <span className="text-[10px] text-slate-400 font-medium">Operations</span>
                     </div>
@@ -332,7 +330,7 @@ export default function JSKWebsite() {
                     <h3 className="text-white font-bold text-[1.35rem] leading-snug mb-4">
                       Delivering Sustainable<br />Water &amp; Waste Solutions
                     </h3>
-                    <button className="flex items-center gap-3 group">
+                    <button className="cursor-pointer flex items-center gap-3 group">
                       <div className="w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-colors">
                         <svg className="w-4 h-4 text-slate-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                           <polygon points="5 3 19 12 5 21 5 3" />
@@ -370,8 +368,8 @@ export default function JSKWebsite() {
                 <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>Portfolio</p>
                 <h2 className="text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Latest Projects</h2>
               </div>
-              <button className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 hover:border-slate-400 transition-all shadow-sm">
-                Explore All Projects <ArrowRight className="w-3.5 h-3.5" />
+              <button className="group cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm">
+                Explore All Projects <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -405,8 +403,8 @@ export default function JSKWebsite() {
                 <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>Supply &amp; Equipment</p>
                 <h2 className="text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none">Products &amp; Equipment</h2>
               </div>
-              <button className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 hover:border-slate-400 transition-all shadow-sm">
-                Browse All Products <ArrowRight className="w-3.5 h-3.5" />
+              <button className="group cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 bg-white text-[13px] font-medium text-slate-700 transition-all shadow-sm">
+                Browse All Products <span className="relative inline-flex w-3.5 h-3.5 overflow-hidden"><ArrowRight className="w-3.5 h-3.5 absolute transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0" /><ArrowRight className="w-3.5 h-3.5 absolute -translate-x-4 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" /></span>
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -419,7 +417,7 @@ export default function JSKWebsite() {
                       <p className="text-[12.5px] text-slate-500 leading-relaxed">{prod.sub}</p>
                     </div>
                     <button
-                      className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:opacity-80 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]"
+                      className="cursor-pointer w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:opacity-80 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]"
                       style={{ backgroundColor: '#4A7C59' }}
                     >
                       <ArrowRight className="w-4 h-4 text-white" />
@@ -450,13 +448,13 @@ export default function JSKWebsite() {
               {/* Connecting line */}
               <div className="hidden lg:block absolute top-[27px] left-[calc(10%+20px)] right-[calc(10%+20px)] h-px bg-slate-200 z-0" />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 relative z-10">
-                {processSteps.map((step, i) => (
+                {processSteps.map((step) => (
                   <div key={step.num} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
                     <div className="flex items-center justify-between mb-5">
                       <span className="text-[13px] font-semibold text-slate-400">{step.num}</span>
-                      {i < processSteps.length - 1 && (
-                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#4A7C59' }} />
-                      )}
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#EEF6F0', color: '#4A7C59' }}>
+                        <step.Icon className="w-4 h-4" strokeWidth={1.7} />
+                      </div>
                     </div>
                     <h4 className="text-[14px] font-bold text-slate-900 mb-2">{step.title}</h4>
                     <p className="text-[12px] text-slate-500 leading-relaxed">{step.desc}</p>
@@ -478,9 +476,10 @@ export default function JSKWebsite() {
                 </div>
                 <div className="space-y-4">
                   {[
-                    { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office', val: '123, Industrial Area, Vadodara, Gujarat — 390010' },
+                    { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office',   val: '123, Industrial Area, Vadodara, Gujarat — 390010' },
                     { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office', val: '456, SG Highway, Ahmedabad, Gujarat — 380054' },
-                    { icon: <Mail className="w-4 h-4" />, label: 'Email', val: 'info@jskwatertech.com' },
+                    { icon: <Phone  className="w-4 h-4" />, label: 'Phone',            val: '+91 98765 43210' },
+                    { icon: <Mail   className="w-4 h-4" />, label: 'Email',            val: 'info@jskwatertech.com' },
                   ].map((d) => (
                     <div key={d.label} className="flex items-start gap-3">
                       <span className="mt-0.5 flex-shrink-0" style={{ color: '#4A7C59' }}>{d.icon}</span>
@@ -493,7 +492,7 @@ export default function JSKWebsite() {
                 </div>
                 <div className="flex items-center gap-3 pt-2">
                   {[{ Icon: IconLinkedIn }, { Icon: IconFacebook }, { Icon: IconInstagram }, { Icon: IconYoutube }].map(({ Icon }, i) => (
-                    <Link key={i} href="#" className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-slate-400 hover:text-slate-800 transition-colors">
+                    <Link key={i} href="#" className="w-10 h-10 rounded-xl border-2 border-white flex items-center justify-center transition-colors shadow-[0_0_0_1px_rgba(74,124,89,0.14),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#EEF6F0', color: '#4A7C59' }}>
                       <Icon className="w-4 h-4" />
                     </Link>
                   ))}
@@ -528,7 +527,7 @@ export default function JSKWebsite() {
                     <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1.5">Message</label>
                     <textarea rows={4} placeholder="Describe your requirement..." value={enquiryForm.message} onChange={e => setEnquiryForm(f => ({ ...f, message: e.target.value }))} className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-green-400 transition-colors resize-none" />
                   </div>
-                  <button className="w-full h-11 rounded-xl text-white font-medium text-sm flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
+                  <button className="cursor-pointer w-full h-11 rounded-xl text-white font-medium text-sm flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
                     Send Enquiry <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -546,7 +545,7 @@ export default function JSKWebsite() {
           src="/newsletter-bg.png"
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-top"
           sizes="100vw"
         />
         {/* Dark overlay for readability */}
@@ -572,7 +571,7 @@ export default function JSKWebsite() {
                   onChange={e => setEmail(e.target.value)}
                   className="flex-1 px-4 py-2 text-[13px] text-white bg-transparent outline-none placeholder:text-white/35"
                 />
-                <button className="px-5 py-2.5 rounded-full text-white text-[13px] font-semibold flex items-center gap-2 transition-all hover:opacity-90 active:scale-[0.96] flex-shrink-0 border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
+                <button className="cursor-pointer px-5 py-2.5 rounded-full text-white text-[13px] font-semibold flex items-center gap-2 transition-all hover:opacity-90 active:scale-[0.96] flex-shrink-0 border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]" style={{ backgroundColor: '#4A7C59' }}>
                   Subscribe <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -600,7 +599,7 @@ export default function JSKWebsite() {
               <p className="text-[12px] text-white/35 mb-6">Vadodara · Ahmedabad · Pan India</p>
               <div className="flex items-center gap-2.5">
                 {[IconLinkedIn, IconFacebook, IconInstagram, IconYoutube].map((Icon, i) => (
-                  <Link key={i} href="#" className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-white/80 hover:border-white/35 transition-colors">
+                  <Link key={i} href="#" className="w-9 h-9 rounded-xl border-2 flex items-center justify-center transition-colors shadow-[0_0_0_1px_rgba(74,124,89,0.2),0_2px_1px_0_rgba(0,0,0,0.2)]" style={{ backgroundColor: 'rgba(74,124,89,0.15)', borderColor: 'rgba(74,124,89,0.25)', color: '#6aaa7a' }}>
                     <Icon className="w-3.5 h-3.5" />
                   </Link>
                 ))}
