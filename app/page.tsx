@@ -3,136 +3,16 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, MapPin, Mail, Phone, CheckCircle2, ClipboardCheck, Globe, Trophy, ShieldCheck, Flame, Droplets, Waves, Recycle, Wrench, Hotel, Factory, Home, HeartPulse, Briefcase, Landmark, FileText, Search, FileCheck, HardHat, Rocket } from 'lucide-react'
+import { ArrowRight, MapPin, Mail, Phone, Globe, Wrench, CheckCircle2 } from 'lucide-react'
 
-// ─── ICON HELPERS ─────────────────────────────────────────────────────────────
-
-function IconLinkedIn({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
-    </svg>
-  )
-}
-function IconFacebook({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  )
-}
-function IconInstagram({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-function IconYoutube({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-      <polygon fill="currentColor" stroke="none" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
-    </svg>
-  )
-}
-
-function WaterDropNavIcon() {
-  return (
-    <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
-      <path d="M13 1C13 1 1.5 12.5 1.5 20C1.5 26.35 6.65 31.5 13 31.5C19.35 31.5 24.5 26.35 24.5 20C24.5 12.5 13 1 13 1Z" fill="#4A7C59" fillOpacity="0.92" />
-      <path d="M7 20C7 16.5 9.5 13.2 12.5 11.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.65" />
-      <path d="M10 25C11.5 26.2 14.5 26.2 16 25" stroke="white" strokeWidth="1.4" strokeLinecap="round" opacity="0.4" />
-    </svg>
-  )
-}
-
-function PlaceholderImg({ className }: { className?: string }) {
-  return (
-    <div className={`absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 flex items-center justify-center ${className ?? ''}`}>
-      <svg className="w-9 h-9 text-slate-300" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24">
-        <rect x="3" y="3" width="18" height="18" rx="3" /><circle cx="8.5" cy="8.5" r="1.5" /><path strokeLinecap="round" d="M21 15l-5-5L5 21" />
-      </svg>
-    </div>
-  )
-}
-
-// ─── DATA ─────────────────────────────────────────────────────────────────────
-
-const heroStats = [
-  { Icon: ClipboardCheck, value: '120+', label: 'Projects Completed',   color: '#4A7C59', bg: '#EEF6F0', ring: 'rgba(74,124,89,0.14)' },
-  { Icon: Globe,          value: '18+',  label: 'Cities Served',        color: '#2A7BA0', bg: '#EBF5FA', ring: 'rgba(42,123,160,0.14)' },
-  { Icon: Trophy,         value: '10+',  label: 'Years Experience',      color: '#B87333', bg: '#FDF5EC', ring: 'rgba(184,115,51,0.14)' },
-  { Icon: ShieldCheck,    value: '100%', label: 'End-to-End Execution', color: '#6B4FA0', bg: '#F2EEFC', ring: 'rgba(107,79,160,0.14)' },
-]
-
-const servicesOverviewData = [
-  {
-    name: 'Plumbing', desc: 'Supply, Drainage\n& Sanitary Solutions', color: '#4A7C59', bg: '#EEF6F0', ring: 'rgba(74,124,89,0.12)',
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9h4v6H3z"/><path d="M17 9h4v6h-4z"/><path d="M7 12h10"/><path d="M12 7V3"/><path d="M12 21v-4"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg>,
-  },
-  {
-    name: 'Fire Fighting', desc: 'Hydrant, Sprinkler\n& Alarm Systems', color: '#B94040', bg: '#FDF0F0', ring: 'rgba(185,64,64,0.12)',
-    icon: <Flame strokeWidth={1.7} />,
-  },
-  {
-    name: 'Water Treatment', desc: 'WTP, RO, Softener\n& DM Plants', color: '#2A7BA0', bg: '#EBF5FA', ring: 'rgba(42,123,160,0.12)',
-    icon: <Droplets strokeWidth={1.7} />,
-  },
-  {
-    name: 'Waste Water', desc: 'STP, ETP, MBR, MBBR\n& Grey Water', color: '#3D7A5F', bg: '#EEF7F2', ring: 'rgba(61,122,95,0.12)',
-    icon: <Recycle strokeWidth={1.7} />,
-  },
-  {
-    name: 'AMC / O&M', desc: 'Inspections, Repairs\n& Maintenance', color: '#5A6270', bg: '#F2F4F6', ring: 'rgba(90,98,112,0.12)',
-    icon: <Wrench strokeWidth={1.7} />,
-  },
-  {
-    name: 'Water Features', desc: 'Pool, Lake Revival\n& RWH Solutions', color: '#0E7490', bg: '#E8F5F9', ring: 'rgba(14,116,144,0.12)',
-    icon: <Waves strokeWidth={1.7} />,
-  },
-]
-
-const industryData = [
-  { label: 'Hospitality',    icon: <Hotel       strokeWidth={1.5} /> },
-  { label: 'Industrial',     icon: <Factory     strokeWidth={1.5} /> },
-  { label: 'Residential',    icon: <Home        strokeWidth={1.5} /> },
-  { label: 'Healthcare',     icon: <HeartPulse  strokeWidth={1.5} /> },
-  { label: 'Commercial',     icon: <Briefcase   strokeWidth={1.5} /> },
-  { label: 'Infrastructure', icon: <Landmark    strokeWidth={1.5} /> },
-]
-
-const aboutPoints = [
-  'Turnkey project delivery — concept to commissioning',
-  'ISO-compliant system design and installation',
-  'In-house engineering, procurement, and execution',
-  'Post-commission AMC and operational support',
-  'Operations across 18+ cities, Pan India reach',
-]
-
-const projectsData = [
-  { num: '01', tag: 'Water Treatment', title: 'Advanced WTP for a 500-bed Hospital in Vadodara', loc: 'Gujarat', year: '2024', img: '/project-hospital-wtp.png' },
-  { num: '02', tag: 'Plumbing', title: 'Complete Plumbing Infrastructure for Luxury Residential Tower', loc: 'Gujarat', year: '2024', img: '/project-plumbing-tower.png' },
-  { num: '03', tag: 'Fire Fighting', title: 'Advanced Fire Hydrant & Sprinkler System for Campus', loc: 'Gujarat', year: '2024', img: '/project-fire-fighting.png' },
-  { num: '04', tag: 'O&M / AMC', title: 'AMC for STP at IT Park, Ahmedabad', loc: 'Gujarat', year: '2024', img: '/project-amc-stp.png' },
-]
-
-const productsOverview = [
-  { name: 'Filters', sub: 'Vessel, Bag, Disc, Pool Filters', img: '/product-filters.png' },
-  { name: 'Instruments', sub: 'Flow meters, pH, TDS etc.', img: '/product-instruments.png' },
-  { name: 'Spares & Chemicals', sub: 'RO membranes, Bio culture', img: '/product-spares-chemicals.png' },
-  { name: 'Equipment', sub: 'Pumps, DAF, UV, Ozone', img: '/product-equipment.png' },
-]
-
-const processSteps = [
-  { num: '01', title: 'Scope & Contract', desc: 'Understanding requirements, site assessment, and formalising the project agreement.',  Icon: FileText   },
-  { num: '02', title: 'Site Inspection',  desc: 'Detailed drawings, P&ID, and engineering design finalisation.',                        Icon: Search     },
-  { num: '03', title: 'Signoff',          desc: 'GA, GFC, and P&ID approval before procurement and fabrication begins.',                Icon: FileCheck  },
-  { num: '04', title: 'Execution',        desc: 'Erection, installation, civil work, and skilled labour deployment.',                   Icon: HardHat    },
-  { num: '05', title: 'Commission',       desc: 'System testing, performance validation, and final handover to client.',                 Icon: Rocket     },
-]
-
-const serviceKeys = ['Plumbing', 'Fire Fighting', 'Water Treatment', 'Waste Water', 'AMC / O&M', 'Water Features', 'Pump Systems', 'FRP Products']
+import {
+  WaterDropNavIcon, PlaceholderImg,
+  IconLinkedIn, IconFacebook, IconInstagram, IconYoutube,
+} from './icons'
+import {
+  heroStats, servicesOverviewData, industryData, aboutPoints,
+  projectsData, productsOverview, processSteps, serviceKeys,
+} from './data'
 
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 
@@ -206,6 +86,7 @@ export default function JSKWebsite() {
               </div>
             </div>
           </div>
+
           {/* Stats Bar */}
           <div className="absolute bottom-0 left-0 right-0 z-10 px-8 lg:px-16 pb-6">
             <div className="max-w-[1320px] mx-auto">
@@ -410,7 +291,6 @@ export default function JSKWebsite() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {productsOverview.map((prod) => (
                 <div key={prod.name} className="bg-white rounded-2xl border border-slate-100 overflow-hidden flex" style={{ height: '220px' }}>
-                  {/* Text */}
                   <div className="flex flex-col justify-between p-6 flex-shrink-0" style={{ width: '52%' }}>
                     <div>
                       <h3 className="text-[16px] font-bold text-slate-900 mb-2 leading-snug">{prod.name}</h3>
@@ -423,15 +303,8 @@ export default function JSKWebsite() {
                       <ArrowRight className="w-4 h-4 text-white" />
                     </button>
                   </div>
-                  {/* Image — contain so full product is always visible */}
                   <div className="relative flex-1">
-                    <Image
-                      src={prod.img}
-                      alt={prod.name}
-                      fill
-                      className="object-contain object-center"
-                      sizes="200px"
-                    />
+                    <Image src={prod.img} alt={prod.name} fill className="object-contain object-center" sizes="200px" />
                   </div>
                 </div>
               ))}
@@ -445,7 +318,6 @@ export default function JSKWebsite() {
             <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>Our Methodology</p>
             <h2 className="text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none mb-10">How We Work</h2>
             <div className="relative">
-              {/* Connecting line */}
               <div className="hidden lg:block absolute top-[27px] left-[calc(10%+20px)] right-[calc(10%+20px)] h-px bg-slate-200 z-0" />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 relative z-10">
                 {processSteps.map((step) => (
@@ -477,9 +349,9 @@ export default function JSKWebsite() {
                 <div className="space-y-4">
                   {[
                     { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office',   val: '123, Industrial Area, Vadodara, Gujarat — 390010' },
-                    { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office', val: '456, SG Highway, Ahmedabad, Gujarat — 380054' },
-                    { icon: <Phone  className="w-4 h-4" />, label: 'Phone',            val: '+91 98765 43210' },
-                    { icon: <Mail   className="w-4 h-4" />, label: 'Email',            val: 'info@jskwatertech.com' },
+                    { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office',  val: '456, SG Highway, Ahmedabad, Gujarat — 380054'     },
+                    { icon: <Phone  className="w-4 h-4" />, label: 'Phone',             val: '+91 98765 43210'                                   },
+                    { icon: <Mail   className="w-4 h-4" />, label: 'Email',             val: 'info@jskwatertech.com'                              },
                   ].map((d) => (
                     <div key={d.label} className="flex items-start gap-3">
                       <span className="mt-0.5 flex-shrink-0" style={{ color: '#4A7C59' }}>{d.icon}</span>
@@ -540,15 +412,7 @@ export default function JSKWebsite() {
 
       {/* ── NEWSLETTER ──────────────────────────────────────────────────────── */}
       <section className="relative py-16 overflow-hidden">
-        {/* Tree background image */}
-        <Image
-          src="/newsletter-bg.png"
-          alt=""
-          fill
-          className="object-cover object-top"
-          sizes="100vw"
-        />
-        {/* Dark overlay for readability */}
+        <Image src="/newsletter-bg.png" alt="" fill className="object-cover object-top" sizes="100vw" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
