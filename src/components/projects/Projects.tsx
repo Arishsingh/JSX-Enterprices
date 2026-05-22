@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
-import { projectsData } from '../../data'
+import { projectsData } from '@/data'
 
 export default function Projects() {
   return (

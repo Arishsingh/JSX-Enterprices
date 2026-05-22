@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { servicesOverviewData } from '../../data'
+import { servicesOverviewData } from '@/data'
 
 export default function ServicesOverview() {
   return (

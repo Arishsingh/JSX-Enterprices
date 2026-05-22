@@ -1,4 +1,4 @@
-import { industryData } from '../../data'
+import { industryData } from '@/data'
 
 export default function IndustriesServed() {
   return (

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { CheckCircle2 } from 'lucide-react'
-import { aboutPoints } from '../../data'
+import { aboutPoints } from '@/data'
 import AboutInfoCards from './AboutInfoCards'
 import IndustriesServed from './IndustriesServed'
 

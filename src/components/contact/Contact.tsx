@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { MapPin, Phone, Mail } from 'lucide-react'
-import { IconLinkedIn, IconFacebook, IconInstagram, IconYoutube } from '../../icons'
+import { IconLinkedIn, IconFacebook, IconInstagram, IconYoutube } from '@/icons'
 import EnquiryForm from './EnquiryForm'
 
 export default function Contact() {

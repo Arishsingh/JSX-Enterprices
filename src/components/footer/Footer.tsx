@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { MapPin, Mail } from 'lucide-react'
-import { WaterDropNavIcon, IconLinkedIn, IconFacebook, IconInstagram, IconYoutube } from '../../icons'
+import { WaterDropNavIcon, IconLinkedIn, IconFacebook, IconInstagram, IconYoutube } from '@/icons'
 
 export default function Footer() {
   return (

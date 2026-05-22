@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
-import { serviceKeys } from '../../data'
+import { serviceKeys } from '@/data'
 
 export default function EnquiryForm() {
   const [form, setForm] = useState({ name: '', company: '', service: '', phone: '', message: '' })

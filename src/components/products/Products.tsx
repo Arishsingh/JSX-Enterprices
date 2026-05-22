@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
-import { productsOverview } from '../../data'
+import { productsOverview } from '@/data'
 
 export default function Products() {
   return (
@@ -18,14 +18,15 @@ export default function Products() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {productsOverview.map((prod) => (
             <div key={prod.name} className="bg-white rounded-2xl border border-slate-100 overflow-hidden flex flex-col">
-              {/* Top — full-width image filling the card */}
-              <div className="relative w-full aspect-[4/3]">
+              {/* Top — natural aspect ratio, zero distortion */}
+              <div className="w-full bg-white">
                 <Image
                   src={prod.img}
                   alt={prod.name}
-                  fill
-                  className="object-cover"
+                  width={0}
+                  height={0}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>
               {/* Bottom — text left, button right */}

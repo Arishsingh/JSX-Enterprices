@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { WaterDropNavIcon } from '../../icons'
+import { WaterDropNavIcon } from '@/icons'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)

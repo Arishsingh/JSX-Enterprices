@@ -1,4 +1,4 @@
-import { heroStats } from '../../data'
+import { heroStats } from '@/data'
 
 export default function HeroStats() {
   return (
