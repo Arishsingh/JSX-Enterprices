@@ -19,14 +19,16 @@ export default function ServicesOverview() {
             </button>
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {servicesOverviewData.map((s) => (
-            <div key={s.name} className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-6 hover:shadow-sm transition-all duration-300 cursor-pointer">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-white flex items-center justify-center mb-4 sm:mb-5 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6" style={{ backgroundColor: s.bg, color: s.color, boxShadow: `0 0 0 1px ${s.ring}, 0 2px 1px 0 rgba(0,0,0,0.04)` }}>
+            <div key={s.name} className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-6 hover:shadow-sm transition-all duration-300 cursor-pointer flex flex-row sm:flex-col items-center sm:items-start gap-4 sm:gap-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-white flex items-center justify-center flex-shrink-0 sm:mb-5 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6" style={{ backgroundColor: s.bg, color: s.color, boxShadow: `0 0 0 1px ${s.ring}, 0 2px 1px 0 rgba(0,0,0,0.04)` }}>
                 {s.icon}
               </div>
-              <h3 className="text-[13.5px] sm:text-[14.5px] font-bold text-slate-900 mb-1.5 leading-tight">{s.name}</h3>
-              <p className="text-[11.5px] sm:text-[12px] text-slate-500 leading-relaxed whitespace-pre-line">{s.desc}</p>
+              <div>
+                <h3 className="text-[13.5px] sm:text-[14.5px] font-bold text-slate-900 mb-1 sm:mb-1.5 leading-tight">{s.name}</h3>
+                <p className="text-[11.5px] sm:text-[12px] text-slate-500 leading-relaxed whitespace-pre-line">{s.desc}</p>
+              </div>
             </div>
           ))}
         </div>

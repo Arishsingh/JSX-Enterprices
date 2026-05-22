@@ -6,7 +6,7 @@ import HeroStats from './HeroStats'
 export default function Hero() {
   return (
     <section id="home" className="relative w-full overflow-hidden" style={{ minHeight: '100svh' }}>
-      <Image src="/hero.png" alt="JSK Water Tech — From Waste to Worth" fill className="object-cover object-center" priority sizes="100vw" />
+      <Image src="/hero.png" alt="JSK Water Tech - From Waste to Worth" fill className="object-cover object-center" priority sizes="100vw" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/58 via-black/28 to-black/0" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/22" />
       <div className="relative z-10 flex flex-col justify-center pt-20 pb-44 sm:pt-24 sm:pb-48" style={{ minHeight: '100svh' }}>

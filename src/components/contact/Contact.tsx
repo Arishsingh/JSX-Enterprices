@@ -15,8 +15,8 @@ export default function Contact() {
             </div>
             <div className="space-y-4">
               {[
-                { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office',  val: '123, Industrial Area, Vadodara, Gujarat — 390010' },
-                { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office', val: '456, SG Highway, Ahmedabad, Gujarat — 380054'     },
+                { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office',  val: '123, Industrial Area, Vadodara, Gujarat 390010' },
+                { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office', val: '456, SG Highway, Ahmedabad, Gujarat 380054'     },
                 { icon: <Phone  className="w-4 h-4" />, label: 'Phone',            val: '+91 98765 43210'                                  },
                 { icon: <Mail   className="w-4 h-4" />, label: 'Email',            val: 'info@jskwatertech.com'                             },
               ].map((d) => (

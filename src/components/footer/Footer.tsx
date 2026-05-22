@@ -23,7 +23,7 @@ export default function Footer() {
               Complete MEP contractor for Water Treatment, Plumbing, and Fire Fighting systems.
             </p>
             <p className="text-[12px] text-white/30 mb-5">Vadodara · Ahmedabad · Pan India</p>
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center justify-center lg:justify-start gap-2.5">
               {[IconLinkedIn, IconFacebook, IconInstagram, IconYoutube].map((Icon, i) => (
                 <Link key={i} href="#" className="w-9 h-9 rounded-xl border-2 flex items-center justify-center transition-colors" style={{ backgroundColor: 'rgba(74,124,89,0.15)', borderColor: 'rgba(74,124,89,0.25)', color: '#6aaa7a' }}>
                   <Icon className="w-3.5 h-3.5" />

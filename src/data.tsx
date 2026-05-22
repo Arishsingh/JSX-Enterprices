@@ -56,7 +56,7 @@ export const industryData: { label: string; icon: React.ReactNode }[] = [
 ]
 
 export const aboutPoints = [
-  'Turnkey project delivery — concept to commissioning',
+  'Turnkey project delivery, concept to commissioning',
   'ISO-compliant system design and installation',
   'In-house engineering, procurement, and execution',
   'Post-commission AMC and operational support',
