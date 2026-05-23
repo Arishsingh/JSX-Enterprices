@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Search, ArrowRight, MapPin, Phone, Mail, CheckCircle2, Menu, X } from 'lucide-react'
+import { Search, ArrowRight, MapPin, Phone, Mail, CheckCircle2, Menu, X, Hotel, Factory, Home, HeartPulse, Briefcase, Landmark } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -52,85 +52,85 @@ const stats = [
 ]
 
 const industries = [
-  { label: 'Hospitality',    icon: '🏨' },
-  { label: 'Industrial',     icon: '🏭' },
-  { label: 'Residential',    icon: '🏘️' },
-  { label: 'Healthcare',     icon: '🏥' },
-  { label: 'Commercial',     icon: '🏢' },
-  { label: 'Infrastructure', icon: '🌉' },
+  { label: 'Hospitality',    Icon: Hotel     },
+  { label: 'Industrial',     Icon: Factory   },
+  { label: 'Residential',    Icon: Home      },
+  { label: 'Healthcare',     Icon: HeartPulse},
+  { label: 'Commercial',     Icon: Briefcase },
+  { label: 'Infrastructure', Icon: Landmark  },
 ]
 
 const servicesData = {
   Plumbing: {
     color: '#4A7C59', sub: 'Supply · Drainage · Sanitary',
     items: [
-      { title: 'Water Supply Systems',         desc: 'Complete plumbing solutions for residential, commercial, and industrial water distribution.', img: '/d.jpg' },
-      { title: 'Drainage & Sanitary Networks', desc: 'Efficient drainage and sanitary piping systems designed for long-term performance.',           img: '/m.jpg' },
-      { title: 'Hydro Pneumatic Systems',      desc: 'Advanced pressure boosting systems for smooth and automated water flow management.',           img: '/k.jpg' },
-      { title: 'Plumbing Maintenance',         desc: 'Professional repair, inspection, and maintenance services for plumbing infrastructure.',       img: '/d.jpg' },
+      { title: 'Water Supply Systems',         desc: 'Complete plumbing solutions for residential, commercial, and industrial water distribution.', img: '/product-filters.png' },
+      { title: 'Drainage & Sanitary Networks', desc: 'Efficient drainage and sanitary piping systems designed for long-term performance.',           img: '/product-instruments.png' },
+      { title: 'Hydro Pneumatic Systems',      desc: 'Advanced pressure boosting systems for smooth and automated water flow management.',           img: '/product-spares-chemicals.png' },
+      { title: 'Plumbing Maintenance',         desc: 'Professional repair, inspection, and maintenance services for plumbing infrastructure.',       img: '/product-equipment.png' },
     ],
   },
   'Fire Fighting': {
     color: '#B94040', sub: 'Hydrant · Sprinkler · Alarms',
     items: [
-      { title: 'Fire Hydrant Systems',          desc: 'Reliable fire hydrant networks designed for emergency response and safety compliance.',  img: '/k.jpg' },
-      { title: 'Automatic Sprinkler Systems',   desc: 'Advanced sprinkler systems providing rapid fire suppression and protection.',            img: '/m.jpg' },
-      { title: 'Fire Alarm & Safety Equipment', desc: 'Integrated fire alarms and extinguishing equipment for complete building safety.',       img: '/d.jpg' },
-      { title: 'Fire Pumping Solutions',        desc: 'High-performance fire pumps ensuring continuous emergency water supply.',                img: '/k.jpg' },
+      { title: 'Fire Hydrant Systems',          desc: 'Reliable fire hydrant networks designed for emergency response and safety compliance.',  img: '/product-equipment.png' },
+      { title: 'Automatic Sprinkler Systems',   desc: 'Advanced sprinkler systems providing rapid fire suppression and protection.',            img: '/product-filters.png' },
+      { title: 'Fire Alarm & Safety Equipment', desc: 'Integrated fire alarms and extinguishing equipment for complete building safety.',       img: '/product-instruments.png' },
+      { title: 'Fire Pumping Solutions',        desc: 'High-performance fire pumps ensuring continuous emergency water supply.',                img: '/product-spares-chemicals.png' },
     ],
   },
   'Water Treatment': {
     color: '#2A7BA0', sub: 'WTP · RO · Softener · DM',
     items: [
-      { title: 'Water Treatment Plants',  desc: 'Advanced WTP design and installation for safe and efficient water purification.',       img: '/m.jpg' },
-      { title: 'Reverse Osmosis Systems', desc: 'High-performance RO systems engineered for clean and purified water supply.',          img: '/k.jpg' },
-      { title: 'Water Softening Plants',  desc: 'Efficient softening systems to remove hardness and improve water quality.',            img: '/d.jpg' },
-      { title: 'DM Plant Solutions',      desc: 'Deionization systems for ultra-pure water in industrial and laboratory applications.', img: '/m.jpg' },
+      { title: 'Water Treatment Plants',  desc: 'Advanced WTP design and installation for safe and efficient water purification.',       img: '/product-filters.png' },
+      { title: 'Reverse Osmosis Systems', desc: 'High-performance RO systems engineered for clean and purified water supply.',          img: '/product-spares-chemicals.png' },
+      { title: 'Water Softening Plants',  desc: 'Efficient softening systems to remove hardness and improve water quality.',            img: '/product-equipment.png' },
+      { title: 'DM Plant Solutions',      desc: 'Deionization systems for ultra-pure water in industrial and laboratory applications.', img: '/product-instruments.png' },
     ],
   },
   'Waste Water': {
     color: '#6B7280', sub: 'STP · ETP · MBR · MBBR · Grey Water',
     items: [
-      { title: 'Sewage Treatment Plants',   desc: 'Efficient STP systems managing wastewater with modern treatment technologies.',        img: '/k.jpg' },
-      { title: 'Effluent Treatment Plants', desc: 'Industrial ETP solutions designed to treat and recycle process wastewater safely.',   img: '/d.jpg' },
-      { title: 'MBR & MBBR Systems',        desc: 'Advanced bio-reactor technology for superior biological treatment performance.',      img: '/m.jpg' },
-      { title: 'Grey Water Recycling',      desc: 'Sustainable grey water treatment and reuse systems for buildings and campuses.',      img: '/k.jpg' },
+      { title: 'Sewage Treatment Plants',   desc: 'Efficient STP systems managing wastewater with modern treatment technologies.',        img: '/product-equipment.png' },
+      { title: 'Effluent Treatment Plants', desc: 'Industrial ETP solutions designed to treat and recycle process wastewater safely.',   img: '/product-filters.png' },
+      { title: 'MBR & MBBR Systems',        desc: 'Advanced bio-reactor technology for superior biological treatment performance.',      img: '/product-spares-chemicals.png' },
+      { title: 'Grey Water Recycling',      desc: 'Sustainable grey water treatment and reuse systems for buildings and campuses.',      img: '/product-instruments.png' },
     ],
   },
   'AMC / O&M': {
     color: '#7B5EA7', sub: 'Inspections · Repairs',
     items: [
-      { title: 'Annual Maintenance Contracts', desc: 'Long-term AMC services ensuring efficiency and system reliability year-round.',  img: '/m.jpg' },
-      { title: 'Plant Operation Support',      desc: 'Complete operational management for water and wastewater treatment facilities.', img: '/d.jpg' },
-      { title: 'System Inspection & Testing',  desc: 'Routine inspections and testing services for safe and optimized performance.',  img: '/k.jpg' },
-      { title: 'Repair & Upgrade Solutions',   desc: 'Quick repair services and system upgrades for uninterrupted operations.',       img: '/m.jpg' },
+      { title: 'Annual Maintenance Contracts', desc: 'Long-term AMC services ensuring efficiency and system reliability year-round.',  img: '/product-instruments.png' },
+      { title: 'Plant Operation Support',      desc: 'Complete operational management for water and wastewater treatment facilities.', img: '/product-equipment.png' },
+      { title: 'System Inspection & Testing',  desc: 'Routine inspections and testing services for safe and optimized performance.',  img: '/product-filters.png' },
+      { title: 'Repair & Upgrade Solutions',   desc: 'Quick repair services and system upgrades for uninterrupted operations.',       img: '/product-spares-chemicals.png' },
     ],
   },
   'Water Features': {
     color: '#0E7490', sub: 'Pool · Lake Revival · RWH',
     items: [
-      { title: 'Swimming Pool Systems',      desc: 'Complete pool filtration, circulation, and chemical dosing systems.',                img: '/k.jpg' },
-      { title: 'Lake Revival Projects',      desc: 'Eco-friendly lake restoration and water body management solutions.',                 img: '/d.jpg' },
-      { title: 'Rainwater Harvesting',       desc: 'RWH systems for sustainable water conservation and groundwater recharge.',           img: '/m.jpg' },
-      { title: 'Fountain & Feature Systems', desc: 'Decorative water feature installation and maintenance for landscaping.',             img: '/k.jpg' },
+      { title: 'Swimming Pool Systems',      desc: 'Complete pool filtration, circulation, and chemical dosing systems.',                img: '/product-filters.png' },
+      { title: 'Lake Revival Projects',      desc: 'Eco-friendly lake restoration and water body management solutions.',                 img: '/product-equipment.png' },
+      { title: 'Rainwater Harvesting',       desc: 'RWH systems for sustainable water conservation and groundwater recharge.',           img: '/product-spares-chemicals.png' },
+      { title: 'Fountain & Feature Systems', desc: 'Decorative water feature installation and maintenance for landscaping.',             img: '/product-instruments.png' },
     ],
   },
   'Pump Systems': {
     color: '#B45309', sub: 'Heat Pump · Hydropneumatic',
     items: [
-      { title: 'Hydropneumatic Pressure Systems', desc: 'Automated pressure boosting for consistent water supply in multi-storey buildings.', img: '/d.jpg' },
-      { title: 'Heat Pump Solutions',             desc: 'Energy-efficient heat pump systems for heating and cooling applications.',          img: '/m.jpg' },
-      { title: 'Submersible Pump Systems',        desc: 'Industrial and domestic submersible pump installation and maintenance.',            img: '/k.jpg' },
-      { title: 'Pump AMC Services',               desc: 'Regular maintenance contracts ensuring peak pump performance and longevity.',       img: '/d.jpg' },
+      { title: 'Hydropneumatic Pressure Systems', desc: 'Automated pressure boosting for consistent water supply in multi-storey buildings.', img: '/product-equipment.png' },
+      { title: 'Heat Pump Solutions',             desc: 'Energy-efficient heat pump systems for heating and cooling applications.',          img: '/product-instruments.png' },
+      { title: 'Submersible Pump Systems',        desc: 'Industrial and domestic submersible pump installation and maintenance.',            img: '/product-filters.png' },
+      { title: 'Pump AMC Services',               desc: 'Regular maintenance contracts ensuring peak pump performance and longevity.',       img: '/product-spares-chemicals.png' },
     ],
   },
   'FRP Products': {
     color: '#065F46', sub: 'Covers · Gratings · Gullies',
     items: [
-      { title: 'FRP Covers & Lids',       desc: 'Durable fibre-reinforced plastic covers for manholes, tanks, and pits.',                img: '/m.jpg' },
-      { title: 'FRP Gratings',            desc: 'Lightweight, corrosion-resistant gratings for industrial flooring and walkways.',       img: '/k.jpg' },
-      { title: 'FRP Gully Traps',         desc: 'Anti-corrosive FRP gully systems for drainage and wastewater channels.',                img: '/d.jpg' },
-      { title: 'Custom FRP Fabrication',  desc: 'Bespoke FRP moulding and fabrication for project-specific requirements.',              img: '/m.jpg' },
+      { title: 'FRP Covers & Lids',       desc: 'Durable fibre-reinforced plastic covers for manholes, tanks, and pits.',                img: '/product-spares-chemicals.png' },
+      { title: 'FRP Gratings',            desc: 'Lightweight, corrosion-resistant gratings for industrial flooring and walkways.',       img: '/product-equipment.png' },
+      { title: 'FRP Gully Traps',         desc: 'Anti-corrosive FRP gully systems for drainage and wastewater channels.',                img: '/product-instruments.png' },
+      { title: 'Custom FRP Fabrication',  desc: 'Bespoke FRP moulding and fabrication for project-specific requirements.',              img: '/product-filters.png' },
     ],
   },
 }
@@ -155,8 +155,8 @@ const processSteps = [
 ]
 
 const latestProjects = [
-  { num: '01', tag: 'Water Treatment', title: 'Advanced WTP for a 500-bed Hospital in Vadodara',                       meta: ['Gujarat', '2024'], img: '/d.jpg' },
-  { num: '02', tag: 'Plumbing',        title: 'Complete Plumbing Infrastructure for Luxury Residential Tower',         desc: 'Water supply, drainage, and sanitary system execution with maintenance support.',    img: '/m.jpg' },
+  { num: '01', tag: 'Water Treatment', title: 'Advanced WTP for a 500-bed Hospital in Vadodara',                       meta: ['Gujarat', '2024'], img: '/project-hospital-wtp.png' },
+  { num: '02', tag: 'Plumbing',        title: 'Complete Plumbing Infrastructure for Luxury Residential Tower',         desc: 'Water supply, drainage, and sanitary system execution with maintenance support.',    img: '/project-plumbing-tower.png' },
   { num: '03', tag: 'Fire Fighting',   title: 'Advanced Fire Hydrant & Sprinkler System for Industrial Campus',        desc: 'Reliable fire safety systems designed for industrial and commercial facilities.' },
   { num: '04', tag: 'AMC / O&M',       title: 'Annual Maintenance Contract for STP at IT Park, Ahmedabad',            desc: 'Routine inspections, testing, upgrades, and plant maintenance services.' },
 ]
@@ -236,7 +236,9 @@ export default function JSKWebsite() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image src="/c.png" alt="JSK Logo" width={200} height={80} className="h-10 md:h-16 w-auto object-contain" priority />
+            <span className="text-lg md:text-xl font-bold tracking-tight text-slate-900">
+              <span className="text-orange-600">JSK</span> Water Tech
+            </span>
           </Link>
 
           {/* Desktop nav */}
@@ -319,14 +321,14 @@ export default function JSKWebsite() {
               style={{ transitionDelay: '150ms' }}>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="col-span-2 sm:col-span-1 aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden relative bg-slate-100 shadow-xl">
-                  <Image src="/m.jpg" alt="Water treatment plant" fill className="object-cover" priority sizes="(max-width:640px) 100vw, 50vw" />
+                  <Image src="/hero.png" alt="Water treatment plant" fill className="object-cover" priority sizes="(max-width:640px) 100vw, 50vw" />
                 </div>
                 <div className="hidden sm:flex flex-col gap-3">
                   <div className="flex-1 rounded-3xl overflow-hidden relative bg-slate-100 shadow-lg">
-                    <Image src="/k.jpg" alt="Industrial solutions" fill className="object-cover" sizes="50vw" />
+                    <Image src="/hero-bg.png" alt="Industrial solutions" fill className="object-cover" sizes="50vw" />
                   </div>
                   <div className="flex-1 rounded-3xl overflow-hidden relative bg-slate-100 shadow-lg">
-                    <Image src="/d.jpg" alt="Plumbing systems" fill className="object-cover" sizes="50vw" />
+                    <Image src="/about-water-plant.png" alt="Plumbing systems" fill className="object-cover" sizes="50vw" />
                   </div>
                 </div>
               </div>
@@ -336,14 +338,14 @@ export default function JSKWebsite() {
             <div className={`hidden lg:grid lg:col-span-7 grid-cols-12 gap-4 min-h-[460px] transition-all duration-700 ${heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
               style={{ transitionDelay: '150ms' }}>
               <div className="col-span-7 rounded-3xl relative overflow-hidden min-h-[420px] bg-slate-100 shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                <Image src="/m.jpg" alt="Water treatment plant" fill className="object-cover hover:scale-105 transition-transform duration-700" priority sizes="40vw" />
+                <Image src="/hero.png" alt="Water treatment plant" fill className="object-cover hover:scale-105 transition-transform duration-700" priority sizes="40vw" />
               </div>
               <div className="col-span-5 flex flex-col gap-4">
                 <div className="h-[230px] rounded-3xl relative overflow-hidden bg-slate-100 shadow-lg hover:shadow-xl transition-shadow duration-500">
-                  <Image src="/k.jpg" alt="Industrial waste solutions" fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="25vw" />
+                  <Image src="/hero-bg.png" alt="Industrial waste solutions" fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="25vw" />
                 </div>
                 <div className="flex-1 rounded-3xl relative overflow-hidden bg-slate-100 shadow-lg hover:shadow-xl transition-shadow duration-500">
-                  <Image src="/d.jpg" alt="Plumbing systems" fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="25vw" />
+                  <Image src="/about-water-plant.png" alt="Plumbing systems" fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="25vw" />
                 </div>
               </div>
             </div>
@@ -370,7 +372,8 @@ export default function JSKWebsite() {
                 <span key={ind.label}
                   className={`flex items-center gap-2 text-xs md:text-sm font-medium text-slate-600 bg-slate-50 shadow-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-default ${heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                   style={{ transitionDelay: heroInView ? `${600 + i * 60}ms` : '0ms' }}>
-                  <span>{ind.icon}</span>{ind.label}
+                  <ind.Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-orange-600 flex-shrink-0" strokeWidth={1.6} />
+                  {ind.label}
                 </span>
               ))}
             </div>
@@ -417,7 +420,7 @@ export default function JSKWebsite() {
 
               <div className={`space-y-4 md:space-y-5 ${revealed(aboutInView, 'right', 300)}`}>
                 <div className="aspect-[16/9] rounded-2xl md:rounded-3xl overflow-hidden relative bg-slate-200 shadow-xl">
-                  <Image src="/m.jpg" alt="JSK team at work" fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:1024px) 100vw, 45vw" />
+                  <Image src="/about-water-plant.png" alt="JSK team at work" fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:1024px) 100vw, 45vw" />
                 </div>
                 <div className="grid grid-cols-2 gap-2 md:gap-3">
                   {['Turnkey project delivery','ISO-compliant systems','In-house engineering team','Post-commission support','Pan India reach','Transparent pricing'].map((v, i) => (
@@ -464,8 +467,8 @@ export default function JSKWebsite() {
               <div key={i}
                 className={`group cursor-pointer space-y-3 transition-all duration-500 ${servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 style={{ transitionDelay: servicesInView ? `${200 + i * 90}ms` : '0ms' }}>
-                <div className="aspect-[4/3] sm:aspect-[4/5] rounded-xl md:rounded-2xl overflow-hidden relative bg-slate-100 shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
-                  <Image src={item.img} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw" />
+                <div className="aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden relative bg-white shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
+                  <Image src={item.img} alt={item.title} fill className="object-fill" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw" />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-slate-900 mb-1 group-hover:text-orange-600 transition-colors">{item.title}</h3>
@@ -715,7 +718,9 @@ export default function JSKWebsite() {
           {/* Brand row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-8 md:mb-0">
             <div className="sm:col-span-2 lg:col-span-4 space-y-4">
-              <Image src="/c.png" alt="JSK Logo" width={160} height={60} className="h-10 md:h-12 w-auto object-contain" />
+              <span className="text-lg font-bold tracking-tight text-slate-900">
+                <span className="text-orange-600">JSK</span> Water Tech
+              </span>
               <p className="text-xs text-slate-400 leading-relaxed max-w-xs">
                 Complete MEP contractor for Water Treatment, Plumbing, and Fire Fighting systems. Vadodara · Ahmedabad · Pan India.
               </p>

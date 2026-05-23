@@ -1,9 +1,12 @@
+import Image from 'next/image'
 import { processSteps } from '@/data'
 
 export default function Process() {
   return (
-    <section id="process" className="bg-white py-12 sm:py-16 scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="process" className="relative py-12 sm:py-16 scroll-mt-16 overflow-hidden">
+      <Image src="/hero-bg.png" alt="" fill className="object-cover object-center" sizes="100vw" />
+      <div className="absolute inset-0 bg-white/88 backdrop-blur-[2px]" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <p className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2.5" style={{ color: '#4A7C59' }}>Our Methodology</p>
         <h2 className="text-[1.6rem] sm:text-[2.1rem] font-bold text-slate-900 tracking-tight leading-none mb-8 sm:mb-10">How We Work</h2>
         <div className="relative">
