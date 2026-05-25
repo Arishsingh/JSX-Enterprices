@@ -8,6 +8,13 @@ import { WaterDropNavIcon } from '@/icons'
 
 const NAV_LINKS = ['About', 'Services', 'Products', 'Process', 'Projects', 'Contact'] as const
 
+function scrollToSection(id: string) {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
 const primaryBtn = 'cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium text-white transition-all duration-200 active:scale-[0.96] border border-[#3d6b4a] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),inset_1px_0_0_0_rgba(255,255,255,0.3),inset_-1px_0_0_0_rgba(255,255,255,0.3),inset_4px_4px_0_0_rgba(255,255,255,0.06),inset_-4px_-4px_0_0_rgba(255,255,255,0.06),inset_6px_6px_0_0_rgba(255,255,255,0.04),inset_-6px_-6px_0_0_rgba(255,255,255,0.04),inset_8px_8px_0_0_rgba(255,255,255,0.02),inset_-8px_-8px_0_0_rgba(255,255,255,0.02),0_1px_2px_0_rgba(0,0,0,0.08),0_2px_4px_0_rgba(0,0,0,0.06),0_4px_6px_0_rgba(0,0,0,0.04),0_6px_8px_0_rgba(0,0,0,0.02),0_2px_1px_0_rgba(0,0,0,0.04)]'
 
 export default function Navbar() {
@@ -53,15 +60,23 @@ export default function Navbar() {
 
           <nav className="hidden md:flex items-center gap-7">
             {NAV_LINKS.map((item) => (
-              <Link key={item} href={`#${item.toLowerCase()}`} className={`text-[13.5px] font-medium transition-colors duration-200 ${!scrolled ? 'text-white/78 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>{item}</Link>
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className={`text-[13.5px] font-medium transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 ${!scrolled ? 'text-white/78 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
+              >
+                {item}
+              </button>
             ))}
           </nav>
 
-          <Link href="#contact" className="hidden md:block flex-shrink-0">
-            <button className={primaryBtn} style={{ backgroundColor: '#4A7C59' }}>
-              Get a Quote <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </Link>
+          <button
+            className={`hidden md:flex flex-shrink-0 ${primaryBtn}`}
+            style={{ backgroundColor: '#4A7C59' }}
+            onClick={() => scrollToSection('contact')}
+          >
+            Get a Quote <ArrowRight className="w-3.5 h-3.5" />
+          </button>
 
           <button
             className={`md:hidden ${primaryBtn}`}
@@ -124,13 +139,12 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.08 + i * 0.04, duration: 0.2, ease: 'easeOut' }}
                   >
-                    <Link
-                      href={`#${item.toLowerCase()}`}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center px-4 py-3 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                    <button
+                      onClick={() => { setMobileOpen(false); setTimeout(() => scrollToSection(item.toLowerCase()), 300) }}
+                      className="w-full flex items-center px-4 py-3 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer bg-transparent border-none text-left"
                     >
                       {item}
-                    </Link>
+                    </button>
                   </motion.div>
                 ))}
               </nav>
@@ -142,11 +156,13 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.28, duration: 0.22, ease: 'easeOut' }}
               >
-                <Link href="#contact" onClick={() => setMobileOpen(false)}>
-                  <button className={`${primaryBtn} w-full justify-center py-3 rounded-xl text-[14px]`} style={{ backgroundColor: '#4A7C59' }}>
-                    Get a Quote <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Link>
+                <button
+                  className={`${primaryBtn} w-full justify-center py-3 rounded-xl text-[14px]`}
+                  style={{ backgroundColor: '#4A7C59' }}
+                  onClick={() => { setMobileOpen(false); setTimeout(() => scrollToSection('contact'), 300) }}
+                >
+                  Get a Quote <ArrowRight className="w-4 h-4" />
+                </button>
               </motion.div>
             </motion.div>
 

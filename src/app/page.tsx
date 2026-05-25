@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Search, ArrowRight, MapPin, Phone, Mail, CheckCircle2, Menu, X, Hotel, Factory, Home, HeartPulse, Briefcase, Landmark } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -42,6 +43,30 @@ function useInView(threshold = 0.12) {
     return () => obs.disconnect()
   }, [threshold])
   return [ref, inView] as const
+}
+
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState(ids[0])
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
+    ids.forEach(id => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(id) },
+        { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+    return () => observers.forEach(o => o.disconnect())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  return [active, setActive] as const
 }
 
 const stats = [
@@ -192,12 +217,14 @@ function SectionHeader({ title, italic, cta }: { title: string; italic?: string;
   )
 }
 
+const SECTION_IDS = NAV_LINKS.map(l => l.href.slice(1))
+
 export default function JSKWebsite() {
   const [activeService, setActiveService]   = useState<ServiceKey>('Plumbing')
   const [activeProduct, setActiveProduct]   = useState<ProductKey>('Filters')
-  const [serviceAnimate, setServiceAnimate] = useState(true)
   const [menuOpen, setMenuOpen]             = useState(false)
   const [enquiryForm, setEnquiryForm]       = useState({ name: '', company: '', service: '', phone: '', message: '' })
+  const [activeSection, setActiveSection]   = useActiveSection(SECTION_IDS)
 
   const [heroRef,       heroInView]       = useInView(0.05)
   const [aboutRef,      aboutInView]      = useInView()
@@ -207,12 +234,6 @@ export default function JSKWebsite() {
   const [processRef,    processInView]    = useInView()
   const [contactRef,    contactInView]    = useInView()
   const [newsletterRef, newsletterInView] = useInView()
-
-  useEffect(() => {
-    setServiceAnimate(false)
-    const t = setTimeout(() => setServiceAnimate(true), 40)
-    return () => clearTimeout(t)
-  }, [activeService])
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -237,26 +258,45 @@ export default function JSKWebsite() {
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <span className="text-lg md:text-xl font-bold tracking-tight text-slate-900">
-              <span className="text-orange-600">JSK</span> Water Tech
+              <span className="text-orange-600">JSK</span> Enterprises
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-slate-600">
-            {NAV_LINKS.map(l => (
-              <Link key={l.href} href={l.href} className="hover:text-orange-600 transition-colors duration-200 whitespace-nowrap">{l.label}</Link>
-            ))}
+          <nav className="hidden md:flex items-center text-sm font-medium">
+            {NAV_LINKS.map(l => {
+              const id = l.href.slice(1)
+              const isActive = activeSection === id
+              return (
+                <button
+                  key={l.href}
+                  onClick={() => { setActiveSection(id); scrollToSection(id) }}
+                  className="relative px-3 lg:px-4 py-2 whitespace-nowrap cursor-pointer bg-transparent border-none outline-none"
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-pill"
+                      className="absolute inset-0 bg-orange-50 rounded-full"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  <span className={`relative z-10 transition-colors duration-200 ${isActive ? 'text-orange-600 font-semibold' : 'text-slate-600 hover:text-slate-900'}`}>
+                    {l.label}
+                  </span>
+                </button>
+              )
+            })}
           </nav>
 
           <div className="flex items-center gap-2 md:gap-4">
             <button className="p-2 text-slate-500 hover:text-orange-600 transition-colors" aria-label="Search">
-              <Search className="w-4 h-4 md:w-5 md:h-5" />
             </button>
-            <Link href="#contact" className="hidden sm:block">
-              <Button className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-4 md:px-6 text-xs md:text-sm h-9 md:h-10 font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                Get a Quote
-              </Button>
-            </Link>
+            <button
+              onClick={() => { setActiveSection('contact'); scrollToSection('contact') }}
+              className="hidden sm:flex items-center rounded-full bg-orange-600 hover:bg-orange-700 text-white px-4 md:px-6 text-xs md:text-sm h-9 md:h-10 font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border-none"
+            >
+              Get a Quote
+            </button>
             {/* Hamburger */}
             <button
               className="md:hidden p-2 text-slate-700 hover:text-orange-600 transition-colors"
@@ -270,18 +310,25 @@ export default function JSKWebsite() {
         {/* Mobile menu drawer */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="bg-white border-t border-slate-100 px-4 py-4 flex flex-col gap-1">
-            {NAV_LINKS.map(l => (
-              <Link key={l.href} href={l.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-base font-medium text-slate-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-xl transition-all duration-200">
-                {l.label}
-              </Link>
-            ))}
-            <Link href="#contact" onClick={() => setMenuOpen(false)} className="mt-2">
-              <Button className="w-full rounded-full bg-orange-600 hover:bg-orange-700 text-white h-11 font-medium shadow-md">
-                Get a Quote
-              </Button>
-            </Link>
+            {NAV_LINKS.map(l => {
+              const id = l.href.slice(1)
+              const isActive = activeSection === id
+              return (
+                <button
+                  key={l.href}
+                  onClick={() => { setMenuOpen(false); setActiveSection(id); setTimeout(() => scrollToSection(id), 300) }}
+                  className={`text-left text-base font-medium px-3 py-3 rounded-xl transition-all duration-200 cursor-pointer border-none bg-transparent w-full ${isActive ? 'text-orange-600 bg-orange-50' : 'text-slate-700 hover:text-orange-600 hover:bg-orange-50'}`}
+                >
+                  {l.label}
+                </button>
+              )
+            })}
+            <button
+              onClick={() => { setMenuOpen(false); setActiveSection('contact'); setTimeout(() => scrollToSection('contact'), 300) }}
+              className="mt-2 w-full rounded-full bg-orange-600 hover:bg-orange-700 text-white h-11 font-medium shadow-md transition-all duration-200 cursor-pointer border-none"
+            >
+              Get a Quote
+            </button>
           </nav>
         </div>
       </header>
@@ -305,14 +352,18 @@ export default function JSKWebsite() {
                 From concept to commissioning — complete solutions in Water &amp; Wastewater Treatment, Plumbing, and Fire Fighting across Industrial, Hospitality, Residential, and Healthcare sectors.
               </p>
               <div className="flex flex-wrap items-center gap-3 md:gap-4">
-                <Link href="#contact">
-                  <Button className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 h-10 md:h-11 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                    Get Started
-                  </Button>
-                </Link>
-                <Link href="#services" className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors group">
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 h-10 md:h-11 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border-none"
+                >
+                  Get Started
+                </button>
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors group cursor-pointer bg-transparent border-none"
+                >
                   Our Services <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -462,9 +513,9 @@ export default function JSKWebsite() {
           </div>
 
           {/* Cards */}
-          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 transition-all duration-500 ease-out ${serviceAnimate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+          <div key={activeService} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {servicesData[activeService].items.map((item, i) => (
-              <div key={i}
+              <div key={item.title}
                 className={`group cursor-pointer space-y-3 transition-all duration-500 ${servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 style={{ transitionDelay: servicesInView ? `${200 + i * 90}ms` : '0ms' }}>
                 <div className="aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden relative bg-white shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
@@ -755,7 +806,9 @@ export default function JSKWebsite() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-slate-400">
-          <p>© {new Date().getFullYear()} JSK Water Technology. All rights reserved.</p>
+          <p>© {new Date().getFullYear()}Jsk Water technology.All rights reserved 
+
+Iski jagah</p>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-orange-600 transition-colors duration-200">Terms</Link>
             <Link href="#" className="hover:text-orange-600 transition-colors duration-200">Privacy</Link>
