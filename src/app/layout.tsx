@@ -11,8 +11,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "JSK Enterprises",
   description:
-    "JSK Enterprises is an Indian owned engineering company specializing in the
-fields of Water & Waste Water Treatment, Plumbing & Fire Fighting services.",
+    "JSK Enterprises is an Indian owned engineering company specializing in the fields of Water & Waste Water Treatment, Plumbing & Fire Fighting services. ",
 };
 
 export default function RootLayout({
