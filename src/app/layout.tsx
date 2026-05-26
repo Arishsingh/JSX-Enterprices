@@ -9,7 +9,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Savora – Authentic Mediterranean Cuisine",
+  title: "JSK Enterprises",
   description:
     "Experience the rich flavors of traditional Mediterranean cooking in an elegant atmosphere.",
 };
