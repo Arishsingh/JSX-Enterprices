@@ -89,37 +89,37 @@ const servicesData = {
   Plumbing: {
     color: '#4A7C59', sub: 'Supply · Drainage · Sanitary',
     items: [
-      { title: 'Water Supply Systems',         desc: 'Complete plumbing solutions for residential, commercial, and industrial water distribution.', img: '/product-filters.png' },
-      { title: 'Drainage & Sanitary Networks', desc: 'Efficient drainage and sanitary piping systems designed for long-term performance.',           img: '/product-instruments.png' },
-      { title: 'Hydro Pneumatic Systems',      desc: 'Advanced pressure boosting systems for smooth and automated water flow management.',           img: '/product-spares-chemicals.png' },
-      { title: 'Plumbing Maintenance',         desc: 'Professional repair, inspection, and maintenance services for plumbing infrastructure.',       img: '/product-equipment.png' },
+      { title: 'Water Supply Systems',         desc: 'Complete plumbing solutions for residential, commercial, and industrial water distribution.', img: '/01-Water%20Supply%20Systems.webp' },
+      { title: 'Drainage & Sanitary Networks', desc: 'Efficient drainage and sanitary piping systems designed for long-term performance.',           img: '/02-Drainage%20%26%20Sanitary%20Networks.webp' },
+      { title: 'Hydro Pneumatic Systems',      desc: 'Advanced pressure boosting systems for smooth and automated water flow management.',           img: '/03-Hydro%20Pneumatic%20Systems.webp' },
+      { title: 'Plumbing Maintenance',         desc: 'Professional repair, inspection, and maintenance services for plumbing infrastructure.',       img: '/04-Plumbing%20Maintenance.webp' },
     ],
   },
   'Fire Fighting': {
     color: '#B94040', sub: 'Hydrant · Sprinkler · Alarms',
     items: [
-      { title: 'Fire Hydrant Systems',          desc: 'Reliable fire hydrant networks designed for emergency response and safety compliance.',  img: '/product-equipment.png' },
-      { title: 'Automatic Sprinkler Systems',   desc: 'Advanced sprinkler systems providing rapid fire suppression and protection.',            img: '/product-filters.png' },
-      { title: 'Fire Alarm & Safety Equipment', desc: 'Integrated fire alarms and extinguishing equipment for complete building safety.',       img: '/product-instruments.png' },
-      { title: 'Fire Pumping Solutions',        desc: 'High-performance fire pumps ensuring continuous emergency water supply.',                img: '/product-spares-chemicals.png' },
+      { title: 'Fire Hydrant Systems',          desc: 'Reliable fire hydrant networks designed for emergency response and safety compliance.',  img: '/05-Fire%20Hydrant%20Systems.webp' },
+      { title: 'Automatic Sprinkler Systems',   desc: 'Advanced sprinkler systems providing rapid fire suppression and protection.',            img: '/06-Automatic%20Sprinkler%20Systems.webp' },
+      { title: 'Fire Alarm & Safety Equipment', desc: 'Integrated fire alarms and extinguishing equipment for complete building safety.',       img: '/07-Fire%20Alarm%20%26%20Safety%20Equipment.webp' },
+      { title: 'Fire Pumping Solutions',        desc: 'High-performance fire pumps ensuring continuous emergency water supply.',                img: '/08-Fire%20Pumping%20Solutions.webp' },
     ],
   },
   'Water Treatment': {
     color: '#2A7BA0', sub: 'WTP · RO · Softener · DM',
     items: [
-      { title: 'Water Treatment Plants',  desc: 'Advanced WTP design and installation for safe and efficient water purification.',       img: '/product-filters.png' },
-      { title: 'Reverse Osmosis Systems', desc: 'High-performance RO systems engineered for clean and purified water supply.',          img: '/product-spares-chemicals.png' },
-      { title: 'Water Softening Plants',  desc: 'Efficient softening systems to remove hardness and improve water quality.',            img: '/product-equipment.png' },
-      { title: 'DM Plant Solutions',      desc: 'Deionization systems for ultra-pure water in industrial and laboratory applications.', img: '/product-instruments.png' },
+      { title: 'Water Treatment Plants',  desc: 'Advanced WTP design and installation for safe and efficient water purification.',       img: '/09-Water%20Treatment%20Plants.webp' },
+      { title: 'Reverse Osmosis Systems', desc: 'High-performance RO systems engineered for clean and purified water supply.',          img: '/10-Reverse%20Osmosis%20Systems.webp' },
+      { title: 'Water Softening Plants',  desc: 'Efficient softening systems to remove hardness and improve water quality.',            img: '/11-Water%20Softening%20Plants.webp' },
+      { title: 'DM Plant Solutions',      desc: 'Deionization systems for ultra-pure water in industrial and laboratory applications.', img: '/12-DM%20Plant%20Solutions.webp' },
     ],
   },
   'Waste Water': {
     color: '#6B7280', sub: 'STP · ETP · MBR · MBBR · Grey Water',
     items: [
-      { title: 'Sewage Treatment Plants',   desc: 'Efficient STP systems managing wastewater with modern treatment technologies.',        img: '/product-equipment.png' },
-      { title: 'Effluent Treatment Plants', desc: 'Industrial ETP solutions designed to treat and recycle process wastewater safely.',   img: '/product-filters.png' },
-      { title: 'MBR & MBBR Systems',        desc: 'Advanced bio-reactor technology for superior biological treatment performance.',      img: '/product-spares-chemicals.png' },
-      { title: 'Grey Water Recycling',      desc: 'Sustainable grey water treatment and reuse systems for buildings and campuses.',      img: '/product-instruments.png' },
+      { title: 'Sewage Treatment Plants',   desc: 'Efficient STP systems managing wastewater with modern treatment technologies.',        img: '/13-Sewage%20Treatment%20Plants.webp' },
+      { title: 'Effluent Treatment Plants', desc: 'Industrial ETP solutions designed to treat and recycle process wastewater safely.',   img: '/14-Effluent%20Treatment%20Plants.webp' },
+      { title: 'MBR & MBBR Systems',        desc: 'Advanced bio-reactor technology for superior biological treatment performance.',      img: '/15-MBR%20%26%20MBBR%20Systems.webp' },
+      { title: 'Grey Water Recycling',      desc: 'Sustainable grey water treatment and reuse systems for buildings and campuses.',      img: '/16-Grey%20Water%20Recycling.webp' },
     ],
   },
   'AMC / O&M': {
@@ -147,15 +147,6 @@ const servicesData = {
       { title: 'Heat Pump Solutions',             desc: 'Energy-efficient heat pump systems for heating and cooling applications.',          img: '/product-instruments.png' },
       { title: 'Submersible Pump Systems',        desc: 'Industrial and domestic submersible pump installation and maintenance.',            img: '/product-filters.png' },
       { title: 'Pump AMC Services',               desc: 'Regular maintenance contracts ensuring peak pump performance and longevity.',       img: '/product-spares-chemicals.png' },
-    ],
-  },
-  'FRP Products': {
-    color: '#065F46', sub: 'Covers · Gratings · Gullies',
-    items: [
-      { title: 'FRP Covers & Lids',       desc: 'Durable fibre-reinforced plastic covers for manholes, tanks, and pits.',                img: '/product-spares-chemicals.png' },
-      { title: 'FRP Gratings',            desc: 'Lightweight, corrosion-resistant gratings for industrial flooring and walkways.',       img: '/product-equipment.png' },
-      { title: 'FRP Gully Traps',         desc: 'Anti-corrosive FRP gully systems for drainage and wastewater channels.',                img: '/product-instruments.png' },
-      { title: 'Custom FRP Fabrication',  desc: 'Bespoke FRP moulding and fabrication for project-specific requirements.',              img: '/product-filters.png' },
     ],
   },
 }
@@ -189,7 +180,7 @@ const latestProjects = [
 const tagColors: Record<string, string> = {
   'Water Treatment': '#2A7BA0', 'Plumbing': '#4A7C59', 'Fire Fighting': '#B94040',
   'AMC / O&M': '#7B5EA7', 'Waste Water': '#6B7280', 'Water Features': '#0E7490',
-  'Pump Systems': '#B45309', 'FRP Products': '#065F46',
+  'Pump Systems': '#B45309',
 }
 function tc(tag: string) { return tagColors[tag] ?? '#EA580C' }
 
@@ -202,16 +193,16 @@ const NAV_LINKS = [
   { label: 'Contact',     href: '#contact'  },
 ]
 
-function SectionHeader({ title, italic, cta }: { title: string; italic?: string; cta?: string }) {
+function SectionHeader({ title, italic, cta, ctaHref = '/services' }: { title: string; italic?: string; cta?: string; ctaHref?: string }) {
   return (
     <div className="flex items-baseline justify-between mb-8 md:mb-12">
       <h2 className="text-2xl sm:text-3xl md:text-4xl tracking-tight leading-none font-normal font-subheading">
         {title}{italic && <> <em style={{ fontStyle: 'italic', color: '#ea580c' }}>{italic}</em></>}
       </h2>
       {cta && (
-        <button className="flex items-center gap-1.5 text-[11px] font-medium tracking-[0.09em] uppercase text-slate-400 hover:text-orange-600 transition-colors group border-none bg-transparent cursor-pointer shrink-0 ml-4">
+        <Link href={ctaHref} className="flex items-center gap-1.5 text-[11px] font-medium tracking-[0.09em] uppercase text-slate-400 hover:text-orange-600 transition-colors group shrink-0 ml-4">
           {cta} <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-        </button>
+        </Link>
       )}
     </div>
   )
@@ -256,10 +247,8 @@ export default function JSKWebsite() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
 
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <span className="text-lg md:text-xl font-bold tracking-tight text-slate-900">
-              <span className="text-orange-600">JSK</span> Enterprises
-            </span>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image src="/a.png" alt="JSX Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
           </Link>
 
           {/* Desktop nav */}
@@ -352,12 +341,13 @@ export default function JSKWebsite() {
                 From concept to commissioning — complete solutions in Water &amp; Wastewater Treatment, Plumbing, and Fire Fighting across Industrial, Hospitality, Residential, and Healthcare sectors.
               </p>
               <div className="flex flex-wrap items-center gap-3 md:gap-4">
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 h-10 md:h-11 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border-none"
+                <a
+                  href="/brochure.pdf"
+                  download="JSX-Enterprises-Brochure.pdf"
+                  className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 h-10 md:h-11 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 inline-flex items-center"
                 >
-                  Get Started
-                </button>
+                  Brochure
+                </a>
                 <button
                   onClick={() => scrollToSection('services')}
                   className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors group cursor-pointer bg-transparent border-none"
@@ -534,7 +524,7 @@ export default function JSKWebsite() {
         <section ref={projectsRef} className="bg-slate-50 py-14 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className={revealed(projectsInView)}>
-              <SectionHeader title="Latest" italic="Projects" cta="Explore all" />
+              <SectionHeader title="Latest" italic="Projects" cta="Explore all" ctaHref="/projects" />
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-14 items-start">
 
@@ -652,10 +642,10 @@ export default function JSKWebsite() {
                 <h3 className="text-base md:text-lg font-bold text-slate-900 mb-4 md:mb-5 font-subheading">Office Details</h3>
                 <div className="space-y-3 md:space-y-4">
                   {[
-                    { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office', val: '123, Industrial Area, Vadodara, Gujarat — 390010' },
-                    { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office', val: '456, SG Highway, Ahmedabad, Gujarat — 380054' },
-                    { icon: <Phone className="w-4 h-4" />, label: 'Phone',            val: '+91 98765 43210 / +91 79 1234 5678' },
-                    { icon: <Mail className="w-4 h-4" />,  label: 'Email',            val: 'info@jskwatertech.com' },
+                    { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office', val: 'B4 Jai Y ogeshwar Nagar, Co_op Housing Society,Near Jalaram Mandir sama, Vadadora-390008,Gujarat,India   ' },
+                    { icon: <MapPin className="w-4 h-4" />, label: 'Ahmedabad Office', val: '35, Jaldarshan Park, opp K. P. Height, Near Navrang School, Ambicanagar, Odhav, Ahmedabad - 382415' },
+                    { icon: <Phone className="w-4 h-4" />, label: 'Phone',            val: '+91-9316495178 / +91-6353646954' },
+                    { icon: <Mail className="w-4 h-4" />,  label: 'Email',            val: 'mgr.jsk@gmail.com / mktg.jsk@gmail.com' },
                   ].map((d, i) => (
                     <div key={d.label}
                       className={`flex items-start gap-3 transition-all duration-500 ${contactInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
@@ -670,12 +660,17 @@ export default function JSKWebsite() {
                 </div>
               </div>
 
-              <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-md bg-slate-50 aspect-[16/9] flex items-center justify-center">
-                <div className="text-center space-y-2">
-                  <MapPin className="w-8 h-8 text-slate-300 mx-auto" />
-                  <p className="text-xs text-slate-400">Vadodara Office Pin</p>
-                  <p className="text-[10px] text-slate-300">Embed Google Maps here</p>
-                </div>
+              <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
+                <iframe
+                  src="https://maps.google.com/maps?q=B4+Jai+Yogeshwar+Nagar+Near+Jalaram+Mandir+Sama+Vadodara+390008+Gujarat+India&output=embed&z=15"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="JSK Enterprises Vadodara Office"
+                />
               </div>
 
               <div>
@@ -770,7 +765,7 @@ export default function JSKWebsite() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-8 md:mb-0">
             <div className="sm:col-span-2 lg:col-span-4 space-y-4">
               <span className="text-lg font-bold tracking-tight text-slate-900">
-                <span className="text-orange-600">JSK</span> Water Tech
+                <span className="text-orange-600">JSK</span> Enterprises
               </span>
               <p className="text-xs text-slate-400 leading-relaxed max-w-xs">
                 Complete MEP contractor for Water Treatment, Plumbing, and Fire Fighting systems. Vadodara · Ahmedabad · Pan India.
@@ -787,16 +782,27 @@ export default function JSKWebsite() {
             {/* Link columns */}
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:col-span-8 gap-6 md:gap-8 lg:pt-0">
               {[
-                { title: 'Company',  links: ['About Us','Our Team','Careers','Contact Us','Privacy Policy'].map(l => ({ label: l, href: '#' })) },
-                { title: 'Services', links: ['Plumbing','Fire Fighting','Water Treatment','Waste Water','AMC / O&M'].map(l => ({ label: l, href: '#services' })) },
-                { title: 'Products', links: ['Filters','Instruments','Spares & Chemicals','Equipment'].map(l => ({ label: l, href: '#products' })) },
-                { title: 'Contact',  links: [{ label: 'Vadodara + Ahmedabad', href: '#' }, { label: '+91 98765 43210', href: 'tel:+919876543210' }, { label: 'info@jskwatertech.com', href: 'mailto:info@jskwatertech.com' }] },
+                { title: 'Company',  links: [
+                  { label: 'About Us',       href: '/#about'   },
+                  { label: 'Our Team',       href: '/#about'   },
+                  { label: 'Careers',        href: '/#contact' },
+                  { label: 'Contact Us',     href: '/#contact' },
+                  { label: 'Privacy Policy', href: '/JSK_Privacy_Policy.docx', download: true },
+                ]},
+                { title: 'Services', links: ['Plumbing','Fire Fighting','Water Treatment','Waste Water','AMC / O&M'].map(l => ({ label: l, href: '/services' })) },
+                { title: 'Products', links: ['Filters','Instruments','Spares & Chemicals','Equipment'].map(l => ({ label: l, href: '/#products' })) },
+                { title: 'Contact',  links: [{ label: 'Vadodara + Ahmedabad', href: '/#contact' }, { label: '+91 9316495178', href: 'tel:+919316495178' }, { label: 'mgr.jsk@gmail.com', href: 'mailto:mgr.jsk@gmail.com' }] },
               ].map((col) => (
                 <div key={col.title} className="space-y-3">
                   <h5 className="text-xs font-bold text-slate-900 uppercase tracking-widest">{col.title}</h5>
                   <ul className="space-y-2">
                     {col.links.map(item => (
-                      <li key={item.label}><Link href={item.href} className="text-xs text-slate-400 hover:text-orange-600 transition-colors duration-200 leading-relaxed">{item.label}</Link></li>
+                      <li key={item.label}>
+                        {'download' in item && item.download
+                          ? <a href={item.href} download className="text-xs text-slate-400 hover:text-orange-600 transition-colors duration-200 leading-relaxed">{item.label}</a>
+                          : <Link href={item.href} className="text-xs text-slate-400 hover:text-orange-600 transition-colors duration-200 leading-relaxed">{item.label}</Link>
+                        }
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -806,12 +812,12 @@ export default function JSKWebsite() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-slate-400">
-          <p>© {new Date().getFullYear()}Jsk Water technology.All rights reserved 
+          <p>© {new Date().getFullYear()} Jsk Enterprises.By kalaakari Adda
 
-Iski jagah</p>
+    2026 Jsk Water technology.All rights reserved </p>
           <div className="flex gap-4">
-            <Link href="#" className="hover:text-orange-600 transition-colors duration-200">Terms</Link>
-            <Link href="#" className="hover:text-orange-600 transition-colors duration-200">Privacy</Link>
+            <a href="/JSK_Terms_Conditions.docx"  download className="hover:text-orange-600 transition-colors duration-200">Terms</a>
+            <a href="/JSK_Privacy_Policy.docx"    download className="hover:text-orange-600 transition-colors duration-200">Privacy</a>
           </div>
         </div>
       </footer>
