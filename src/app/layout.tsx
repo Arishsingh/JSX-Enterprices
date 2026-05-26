@@ -11,7 +11,8 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "JSK Enterprises",
   description:
-    "Experience the rich flavors of traditional Mediterranean cooking in an elegant atmosphere.",
+    "JSK Enterprises is an Indian owned engineering company specializing in the
+fields of Water & Waste Water Treatment, Plumbing & Fire Fighting services.",
 };
 
 export default function RootLayout({
