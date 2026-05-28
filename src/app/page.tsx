@@ -214,7 +214,33 @@ export default function JSKWebsite() {
   const [activeService, setActiveService]   = useState<ServiceKey>('Plumbing')
   const [activeProduct, setActiveProduct]   = useState<ProductKey>('Filters')
   const [menuOpen, setMenuOpen]             = useState(false)
-  const [enquiryForm, setEnquiryForm]       = useState({ name: '', company: '', service: '', phone: '', message: '' })
+  const [enquiryForm, setEnquiryForm]       = useState({ email: '', company: '', service: '', phone: '', message: '' })
+  const [enquiryStatus, setEnquiryStatus]   = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [toast, setToast]                   = useState<{ show: boolean; type: 'success' | 'error'; msg: string }>({ show: false, type: 'success', msg: '' })
+
+  function showToast(type: 'success' | 'error', msg: string) {
+    setToast({ show: true, type, msg })
+    setTimeout(() => setToast(t => ({ ...t, show: false })), 4000)
+  }
+
+  async function handleEnquirySubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setEnquiryStatus('loading')
+    try {
+      const res = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(enquiryForm),
+      })
+      if (!res.ok) throw new Error()
+      setEnquiryStatus('idle')
+      setEnquiryForm({ email: '', company: '', service: '', phone: '', message: '' })
+      showToast('success', 'Enquiry sent! We\'ll get back to you shortly.')
+    } catch {
+      setEnquiryStatus('idle')
+      showToast('error', 'Something went wrong. Please try again.')
+    }
+  }
   const [activeSection, setActiveSection]   = useActiveSection(SECTION_IDS)
 
   const [heroRef,       heroInView]       = useInView(0.05)
@@ -692,11 +718,11 @@ export default function JSKWebsite() {
 
             <div className={`bg-slate-50 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg ${revealed(contactInView, 'right', 200)}`}>
               <h3 className="text-base md:text-lg font-bold text-slate-900 mb-5 md:mb-6 font-subheading">Send an Enquiry</h3>
-              <div className="space-y-4">
+              <form onSubmit={handleEnquirySubmit} className="space-y-4">
                 {/* Name + Company: single col on mobile, 2 cols on sm+ */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {([
-                    { label: 'Name',    placeholder: 'Your name',    key: 'name'    as const, type: 'text' },
+                    { label: 'Email',   placeholder: 'your@email.com', key: 'email'  as const, type: 'email' },
                     { label: 'Company', placeholder: 'Company name', key: 'company' as const, type: 'text' },
                   ] as const).map((field) => (
                     <div key={field.key}>
@@ -731,15 +757,25 @@ export default function JSKWebsite() {
                     onChange={e => setEnquiryForm(f => ({ ...f, message: e.target.value }))}
                     className="w-full px-4 py-3 text-sm bg-white shadow-sm rounded-xl outline-none focus:shadow-md focus:ring-2 focus:ring-orange-400/30 transition-all duration-200 resize-none" />
                 </div>
-                <Button className="w-full h-11 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                  Send Enquiry <ArrowRight className="w-4 h-4 ml-2" />
+                <Button type="submit" disabled={enquiryStatus === 'loading'} className="w-full h-11 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
+                  {enquiryStatus === 'loading' ? 'Sending…' : <><span>Send Enquiry</span><ArrowRight className="w-4 h-4 ml-2" /></>}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
         </section>
 
       </main>
+
+      {/* ── TOAST ── */}
+      <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[999] transition-all duration-500 ${toast.show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+        <div className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-xl text-sm font-medium text-white ${toast.type === 'success' ? 'bg-slate-900' : 'bg-red-600'}`}>
+          {toast.type === 'success'
+            ? <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+            : <X className="w-4 h-4 shrink-0" />}
+          {toast.msg}
+        </div>
+      </div>
 
       {/* ── NEWSLETTER ── */}
       <section ref={newsletterRef} className="bg-slate-900 text-white py-14 md:py-20 px-4 md:px-6 text-center">
