@@ -17,7 +17,7 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "JSX Enterprises",
+  title: "JSk Enterprises",
   description:
     "JSX Enterprises is an Indian owned engineering company specializing in the fields of Water & Waste Water Treatment, Plumbing & Fire Fighting services.",
 };
