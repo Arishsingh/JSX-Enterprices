@@ -195,7 +195,7 @@ const NAV_LINKS = [
 
 function SectionHeader({ title, italic, cta, ctaHref = '/services' }: { title: string; italic?: string; cta?: string; ctaHref?: string }) {
   return (
-    <div className="flex items-baseline justify-between mb-8 md:mb-12">
+    <div className="flex items-baseline justify-between mb-5 md:mb-8">
       <h2 className="text-2xl sm:text-3xl md:text-4xl tracking-tight leading-none font-normal font-subheading">
         {title}{italic && <> <em style={{ fontStyle: 'italic', color: '#ea580c' }}>{italic}</em></>}
       </h2>
@@ -223,23 +223,18 @@ export default function JSKWebsite() {
     setTimeout(() => setToast(t => ({ ...t, show: false })), 4000)
   }
 
-  async function handleEnquirySubmit(e: React.FormEvent) {
+  function handleEnquirySubmit(e: React.FormEvent) {
     e.preventDefault()
-    setEnquiryStatus('loading')
-    try {
-      const res = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(enquiryForm),
-      })
-      if (!res.ok) throw new Error()
-      setEnquiryStatus('idle')
-      setEnquiryForm({ email: '', company: '', service: '', phone: '', message: '' })
-      showToast('success', 'Enquiry sent! We\'ll get back to you shortly.')
-    } catch {
-      setEnquiryStatus('idle')
-      showToast('error', 'Something went wrong. Please try again.')
+    const { email, company, service, phone, message } = enquiryForm
+    if (!email || !phone || !message) {
+      showToast('error', 'Please fill in email, phone, and message.')
+      return
     }
+    const subject = encodeURIComponent(`New Enquiry — ${service || 'General'} from ${email}`)
+    const body = encodeURIComponent(
+      `From: ${email}\nCompany: ${company || '—'}\nService Required: ${service || '—'}\nPhone: ${phone}\n\nMessage:\n${message}`
+    )
+    window.location.href = `mailto:mktg.jsk@gmail.com?subject=${subject}&body=${body}`
   }
   const [activeSection, setActiveSection]   = useActiveSection(SECTION_IDS)
 
@@ -351,7 +346,7 @@ export default function JSKWebsite() {
       <main>
 
         {/* ── HERO ── */}
-        <section id="home" ref={heroRef} className="max-w-7xl mx-auto px-4 md:px-6 pt-10 md:pt-14 pb-14 md:pb-20">
+        <section id="home" ref={heroRef} className="max-w-7xl mx-auto px-4 md:px-6 pt-8 md:pt-10 pb-10 md:pb-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
             {/* Copy */}
@@ -372,7 +367,7 @@ export default function JSKWebsite() {
                   download="JSX-Enterprises-Brochure.pdf"
                   className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 h-10 md:h-11 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 inline-flex items-center"
                 >
-                  Brochure
+                  View Brochure
                 </a>
                 <button
                   onClick={() => scrollToSection('services')}
@@ -419,7 +414,7 @@ export default function JSKWebsite() {
           </div>
 
           {/* Stats bar */}
-          <div className={`mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden shadow-md transition-all duration-700 ${heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          <div className={`mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden shadow-md transition-all duration-700 ${heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '300ms' }}>
             {stats.map((s, i) => (
               <div key={s.label} className="bg-white px-4 md:px-8 py-4 md:py-6 text-center hover:bg-orange-50 transition-colors duration-300"
@@ -431,7 +426,7 @@ export default function JSKWebsite() {
           </div>
 
           {/* Industries */}
-          <div className={`mt-8 md:mt-12 transition-all duration-700 ${heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          <div className={`mt-6 md:mt-8 transition-all duration-700 ${heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '500ms' }}>
             <p className="text-xs font-semibold tracking-widest uppercase text-slate-400 mb-4 md:mb-5">Industries Served</p>
             <div className="flex flex-wrap gap-2 md:gap-3">
@@ -448,24 +443,24 @@ export default function JSKWebsite() {
         </section>
 
         {/* ── ABOUT ── */}
-        <section id="about" ref={aboutRef} className="bg-slate-50 py-14 md:py-24">
+        <section id="about" ref={aboutRef} className="bg-slate-50 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className={revealed(aboutInView)}>
               <SectionHeader title="About" italic="Us" />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
-              <div className={`space-y-6 md:space-y-8 ${revealed(aboutInView, 'left', 150)}`}>
+              <div className={`space-y-4 md:space-y-6 ${revealed(aboutInView, 'left', 150)}`}>
                 <div>
                   <span className="text-[10px] font-bold tracking-widest uppercase text-orange-600 block mb-3">Company Story</span>
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 tracking-tight font-subheading">Indian-Owned · Vadodara Based</h3>
+                  <h3 className="text-xl md:text-2xl font-normal text-slate-900 mb-3 tracking-tight font-subheading">Indian-Owned · Vadodara Based</h3>
                   <p className="text-sm text-slate-500 leading-relaxed">
                     JSK is a Vadodara-headquartered MEP contractor specialising in Water Treatment, Plumbing, and Fire Fighting systems. With over a decade of hands-on execution, we deliver turnkey projects from concept to commissioning — serving clients across India.
                   </p>
                 </div>
                 <div>
                   <span className="text-[10px] font-bold tracking-widest uppercase text-orange-600 block mb-3">Service Approach</span>
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 tracking-tight font-subheading">Concept to Commissioning</h3>
+                  <h3 className="text-xl md:text-2xl font-normal text-slate-900 mb-3 tracking-tight font-subheading">Concept to Commissioning</h3>
                   <p className="text-sm text-slate-500 leading-relaxed">
                     We handle every phase — site inspection, engineering drawings, procurement, erection, testing, and handover. Our end-to-end model ensures accountability, quality, and speed on every project.
                   </p>
@@ -504,21 +499,21 @@ export default function JSKWebsite() {
         </section>
 
         {/* ── SERVICES ── */}
-        <section id="services" ref={servicesRef} className="py-14 md:py-24 max-w-7xl mx-auto px-4 md:px-6">
+        <section id="services" ref={servicesRef} className="pt-16 pb-16 md:pt-24 md:pb-24 max-w-7xl mx-auto px-4 md:px-6">
           <div className={revealed(servicesInView)}>
             <SectionHeader title="Our" italic="Services" cta="View all" />
           </div>
 
           {/* Tabs — horizontally scrollable */}
-          <div className={`border-b border-slate-100 mb-8 md:mb-10 overflow-x-auto ${revealed(servicesInView, 'up', 100)}`} style={{ scrollbarWidth: 'none' }}>
-            <div className="flex gap-0 whitespace-nowrap min-w-max">
+          <div className={`border-b border-slate-100 overflow-x-auto ${revealed(servicesInView, 'up', 100)}`} style={{ scrollbarWidth: 'none' }}>
+            <div className="flex w-full">
               {(Object.keys(servicesData) as ServiceKey[]).map((key) => {
                 const isActive = activeService === key
                 return (
                   <button key={key} onClick={() => setActiveService(key)}
-                    className={`relative px-3 md:px-5 pb-3 pt-1 text-xs md:text-sm font-medium border-none bg-transparent transition-colors duration-200 outline-none cursor-pointer ${isActive ? 'text-slate-900' : 'text-slate-400 hover:text-slate-700'}`}>
+                    className={`relative flex-1 min-w-0 px-1 md:px-2 pb-1.5 pt-1 text-[10px] md:text-xs font-medium border-none bg-transparent transition-colors duration-200 outline-none cursor-pointer text-center ${isActive ? 'text-slate-900' : 'text-slate-400 hover:text-slate-700'}`}>
                     {key}
-                    <span className="hidden sm:block text-[10px] font-normal mt-0.5" style={{ color: isActive ? servicesData[key].color : '#94a3b8' }}>
+                    <span className="hidden sm:block text-[9px] font-normal mt-0.5 truncate" style={{ color: isActive ? servicesData[key].color : '#94a3b8' }}>
                       {servicesData[key].sub}
                     </span>
                     {isActive && <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-t" style={{ background: servicesData[key].color }} />}
@@ -547,12 +542,12 @@ export default function JSKWebsite() {
         </section>
 
         {/* ── LATEST PROJECTS ── */}
-        <section ref={projectsRef} className="bg-slate-50 py-14 md:py-24">
+        <section ref={projectsRef} className="bg-slate-50 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className={revealed(projectsInView)}>
               <SectionHeader title="Latest" italic="Projects" cta="Explore all" ctaHref="/projects" />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-14 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-10 items-start">
 
               <div className={`group cursor-pointer ${revealed(projectsInView, 'left', 100)}`}>
                 <div className="w-full aspect-[4/3] overflow-hidden mb-4 md:mb-5 rounded-xl md:rounded-2xl shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
@@ -595,9 +590,9 @@ export default function JSKWebsite() {
         </section>
 
         {/* ── PRODUCTS ── */}
-        <section id="products" ref={productsRef} className="py-14 md:py-24 max-w-7xl mx-auto px-4 md:px-6">
+        <section id="products" ref={productsRef} className="py-16 md:py-24 max-w-7xl mx-auto px-4 md:px-6">
           <div className={revealed(productsInView)}>
-            <SectionHeader title="Products &amp;" italic="Equipment" cta="Browse all" />
+            <SectionHeader title="Products &amp;" italic="Equipment" cta="Browse all" ctaHref="/products" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
             {(Object.keys(productsData) as ProductKey[]).map((cat, i) => {
@@ -623,13 +618,12 @@ export default function JSKWebsite() {
         </section>
 
         {/* ── PROCESS ── */}
-        <section id="process" ref={processRef} className="bg-slate-900 py-14 md:py-24 text-white">
+        <section id="process" ref={processRef} className="bg-slate-900 py-16 md:py-24 text-white">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className={`flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-10 md:mb-14 transition-all duration-700 ${processInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-6 md:mb-10 transition-all duration-700 ${processInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight font-subheading">
                 How We <em style={{ fontStyle: 'italic', color: '#fb923c' }}>Work</em>
               </h2>
-              <span className="text-xs font-medium tracking-widest uppercase text-slate-400">Process Page</span>
             </div>
 
             {/* Steps — 1 col mobile, 2 col sm, 3 col md, 5 col lg */}
@@ -639,7 +633,7 @@ export default function JSKWebsite() {
                   className={`relative flex flex-col transition-all duration-700 ${processInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   style={{ transitionDelay: processInView ? `${100 + i * 110}ms` : '0ms' }}>
                   {i < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-6 left-[calc(50%+28px)] right-0 h-px bg-slate-700" />
+                    <div className="hidden lg:block absolute top-6 left-[calc(50%+26px)] right-[calc(-50%+26px)] h-px bg-slate-700" />
                   )}
                   <div className="flex flex-row lg:flex-col items-start lg:items-center gap-4 lg:gap-0 text-left lg:text-center lg:px-4 pb-2 lg:pb-0">
                     <div className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-orange-500/40 flex items-center justify-center bg-orange-500/10 relative z-10 shadow-lg hover:scale-110 transition-all duration-300 shrink-0 lg:mb-4">
@@ -657,15 +651,15 @@ export default function JSKWebsite() {
         </section>
 
         {/* ── CONTACT ── */}
-        <section id="contact" ref={contactRef} className="py-14 md:py-24 max-w-7xl mx-auto px-4 md:px-6">
+        <section id="contact" ref={contactRef} className="py-16 md:py-24 max-w-7xl mx-auto px-4 md:px-6">
           <div className={revealed(contactInView)}>
             <SectionHeader title="Contact &amp;" italic="Enquiry" />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
-            <div className={`space-y-6 md:space-y-8 ${revealed(contactInView, 'left', 100)}`}>
+            <div className={`space-y-4 md:space-y-6 ${revealed(contactInView, 'left', 100)}`}>
               <div>
-                <h3 className="text-base md:text-lg font-bold text-slate-900 mb-4 md:mb-5 font-subheading">Office Details</h3>
+                <h3 className="text-base md:text-lg font-normal text-slate-900 mb-4 md:mb-5 font-subheading">Office Details</h3>
                 <div className="space-y-3 md:space-y-4">
                   {[
                     { icon: <MapPin className="w-4 h-4" />, label: 'Vadodara Office', val: 'B4 Jai Y ogeshwar Nagar, Co_op Housing Society,Near Jalaram Mandir sama, Vadadora-390008,Gujarat,India   ' },
@@ -717,7 +711,7 @@ export default function JSKWebsite() {
             </div>
 
             <div className={`bg-slate-50 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg ${revealed(contactInView, 'right', 200)}`}>
-              <h3 className="text-base md:text-lg font-bold text-slate-900 mb-5 md:mb-6 font-subheading">Send an Enquiry</h3>
+              <h3 className="text-base md:text-lg font-normal text-slate-900 mb-5 md:mb-6 font-subheading">Send an Enquiry</h3>
               <form onSubmit={handleEnquirySubmit} className="space-y-4">
                 {/* Name + Company: single col on mobile, 2 cols on sm+ */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -758,7 +752,7 @@ export default function JSKWebsite() {
                     className="w-full px-4 py-3 text-sm bg-white shadow-sm rounded-xl outline-none focus:shadow-md focus:ring-2 focus:ring-orange-400/30 transition-all duration-200 resize-none" />
                 </div>
                 <Button type="submit" disabled={enquiryStatus === 'loading'} className="w-full h-11 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
-                  {enquiryStatus === 'loading' ? 'Sending…' : <><span>Send Enquiry</span><ArrowRight className="w-4 h-4 ml-2" /></>}
+                  <><span>Open in Mail App</span><ArrowRight className="w-4 h-4 ml-2" /></>
                 </Button>
               </form>
             </div>
@@ -778,19 +772,38 @@ export default function JSKWebsite() {
       </div>
 
       {/* ── NEWSLETTER ── */}
-      <section ref={newsletterRef} className="bg-slate-900 text-white py-14 md:py-20 px-4 md:px-6 text-center">
-        <div className={`max-w-xl mx-auto space-y-5 md:space-y-6 transition-all duration-700 ${newsletterInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight font-subheading">
+      <section ref={newsletterRef} className="bg-slate-900 text-white py-12 md:py-16 px-4 md:px-6 text-center">
+        <div className={`max-w-xl mx-auto space-y-4 md:space-y-5 transition-all duration-700 ${newsletterInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight font-subheading">
             Stay Updated on<br />Our Latest Projects
           </h2>
           <p className="text-sm text-slate-400">Subscribe to receive project updates, case studies, and service announcements.</p>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-md mx-auto">
-            <Input type="email" placeholder="Email address"
-              className="rounded-full bg-white/10 text-white h-11 px-5 placeholder:text-slate-400 text-sm focus-visible:ring-orange-400 flex-1" />
-            <Button className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-7 h-11 text-sm font-semibold shrink-0 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              const input = (e.currentTarget.elements.namedItem('nl-email') as HTMLInputElement)
+              const val = input?.value?.trim()
+              if (!val) return
+              const subject = encodeURIComponent('Newsletter Subscription Request')
+              const body = encodeURIComponent(`Hi JSX Enterprises,\n\nPlease add me to your newsletter.\n\nEmail: ${val}\n\nThank you.`)
+              window.location.href = `mailto:mktg.jsk@gmail.com?subject=${subject}&body=${body}`
+            }}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-md mx-auto"
+          >
+            <Input
+              name="nl-email"
+              type="email"
+              required
+              placeholder="Email address"
+              className="rounded-full bg-white/10 text-white h-11 px-5 placeholder:text-slate-400 text-sm focus-visible:ring-orange-400 flex-1"
+            />
+            <Button
+              type="submit"
+              className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-7 h-11 text-sm font-semibold shrink-0 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            >
               Subscribe
             </Button>
-          </div>
+          </form>
         </div>
       </section>
 

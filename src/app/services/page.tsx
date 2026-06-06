@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import Footer from '@/components/footer/Footer'
 
 const servicesData = {
   Plumbing: {
@@ -164,10 +165,7 @@ export default function ServicesPage() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="mt-20 border-t border-slate-100 py-8 text-center">
-        <p className="text-xs text-slate-400">© {new Date().getFullYear()} JSK Enterprises. All rights reserved.</p>
-      </footer>
+      <Footer />
 
     </div>
   )

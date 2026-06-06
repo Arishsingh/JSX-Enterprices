@@ -45,6 +45,25 @@ export function WaterDropNavIcon() {
   )
 }
 
+export function InfinityNavIcon({ light = false }: { light?: boolean }) {
+  const stroke = light ? 'white' : '#3D2C8D'
+  const accent = '#F59E0B'
+  return (
+    <svg width="46" height="28" viewBox="0 0 46 28" fill="none">
+      <path
+        d="M23,14 C19,7 3,5 3,14 C3,23 19,21 23,14 C27,7 43,5 43,14 C43,23 27,21 23,14"
+        stroke={stroke}
+        strokeWidth="2.8"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="3" cy="14" r="4" fill={accent} stroke={stroke} strokeWidth="1.8" />
+      <circle cx="43" cy="14" r="4" fill={accent} stroke={stroke} strokeWidth="1.8" />
+    </svg>
+  )
+}
+
 export function PlaceholderImg({ className }: { className?: string }) {
   return (
     <div className={`absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 flex items-center justify-center ${className ?? ''}`}>

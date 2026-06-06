@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { WaterDropNavIcon } from '@/icons'
+import { InfinityNavIcon } from '@/icons'
 
 const NAV_LINKS = ['About', 'Services', 'Products', 'Process', 'Projects', 'Contact'] as const
 
@@ -50,12 +50,12 @@ export default function Navbar() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${!scrolled ? 'px-3 sm:px-6 pt-4' : 'bg-white border-b border-slate-200/60 shadow-[0_1px_0_0_rgba(0,0,0,0.04),0_4px_16px_0_rgba(0,0,0,0.06)]'}`}>
         <div className={`flex items-center justify-between px-3 sm:px-6 transition-all duration-500 ${!scrolled ? 'h-[60px] sm:h-[66px] max-w-[1320px] mx-auto rounded-2xl border border-white/18 backdrop-blur-xl bg-white/6' : 'h-14 sm:h-16 max-w-7xl mx-auto'}`}>
 
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <WaterDropNavIcon />
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="leading-none">
-              <div className={`text-[18px] font-bold tracking-tight leading-none transition-colors ${!scrolled ? 'text-white' : 'text-slate-900'}`}>JSK</div>
-              <div className={`text-[8px] font-semibold tracking-[0.2em] uppercase leading-none mt-[3px] transition-colors ${!scrolled ? 'text-white/55' : 'text-slate-500'}`}>Water Tech</div>
+              <div className={`text-[18px] font-bold tracking-tight leading-none transition-colors ${!scrolled ? 'text-white' : 'text-slate-900'}`}>JSX</div>
+              <div className={`text-[8px] font-semibold tracking-[0.2em] uppercase leading-none mt-[3px] transition-colors ${!scrolled ? 'text-white/55' : 'text-slate-500'}`}>Enterprises</div>
             </div>
+            <InfinityNavIcon light={!scrolled} />
           </Link>
 
           <nav className="hidden md:flex items-center gap-7">
@@ -114,12 +114,12 @@ export default function Navbar() {
             >
               {/* Header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
-                <Link href="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
-                  <WaterDropNavIcon />
+                <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                   <div className="leading-none">
-                    <div className="text-[18px] font-bold text-slate-900 tracking-tight leading-none">JSK</div>
-                    <div className="text-[8px] font-semibold tracking-[0.2em] uppercase text-slate-400 leading-none mt-[3px]">Water Tech</div>
+                    <div className="text-[18px] font-bold text-slate-900 tracking-tight leading-none">JSX</div>
+                    <div className="text-[8px] font-semibold tracking-[0.2em] uppercase text-slate-400 leading-none mt-[3px]">Enterprises</div>
                   </div>
+                  <InfinityNavIcon light={false} />
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
