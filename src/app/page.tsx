@@ -262,14 +262,14 @@ export default function JSKWebsite() {
     + (delay ? ` [transition-delay:${delay}ms]` : '')
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans">
+    <div className="min-h-screen bg-white text-slate-900 font-sans overflow-x-hidden">
 
       {/* ── HEADER ── */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
 
           <Link href="/" className="flex items-center shrink-0">
-            <Image src="/a.png" alt="JSX Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
+            <Image src="/a.png" alt="JSK Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
           </Link>
 
           {/* Desktop nav */}
@@ -364,7 +364,7 @@ export default function JSKWebsite() {
               <div className="flex flex-wrap items-center gap-3 md:gap-4">
                 <a
                   href="/brochure.pdf"
-                  download="JSX-Enterprises-Brochure.pdf"
+                  download="JSK-Enterprises-Brochure.pdf"
                   className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 h-10 md:h-11 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 inline-flex items-center"
                 >
                   View Brochure
@@ -655,7 +655,7 @@ export default function JSKWebsite() {
           <div className={revealed(contactInView)}>
             <SectionHeader title="Contact &amp;" italic="Enquiry" />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-12">
 
             <div className={`space-y-4 md:space-y-6 ${revealed(contactInView, 'left', 100)}`}>
               <div>
@@ -673,14 +673,14 @@ export default function JSKWebsite() {
                       <span className="text-orange-600 mt-0.5 flex-shrink-0">{d.icon}</span>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">{d.label}</p>
-                        <p className="text-xs md:text-sm text-slate-700">{d.val}</p>
+                        <p className="text-xs md:text-sm text-slate-700 break-words">{d.val}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
+              <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-md aspect-[4/3] sm:aspect-[16/9]">
                 <iframe
                   src="https://maps.google.com/maps?q=B4+Jai+Yogeshwar+Nagar+Near+Jalaram+Mandir+Sama+Vadodara+390008+Gujarat+India&output=embed&z=15"
                   width="100%"
@@ -710,7 +710,7 @@ export default function JSKWebsite() {
               </div>
             </div>
 
-            <div className={`bg-slate-50 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg ${revealed(contactInView, 'right', 200)}`}>
+            <div className={`bg-slate-50 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg ${revealed(contactInView, 'right', 200)}`}>
               <h3 className="text-base md:text-lg font-normal text-slate-900 mb-5 md:mb-6 font-subheading">Send an Enquiry</h3>
               <form onSubmit={handleEnquirySubmit} className="space-y-4">
                 {/* Name + Company: single col on mobile, 2 cols on sm+ */}
@@ -746,7 +746,7 @@ export default function JSKWebsite() {
                 </div>
                 <div>
                   <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1.5">Message</label>
-                  <textarea rows={4} placeholder="Describe your requirement..."
+                  <textarea rows={3} placeholder="Describe your requirement..."
                     value={enquiryForm.message}
                     onChange={e => setEnquiryForm(f => ({ ...f, message: e.target.value }))}
                     className="w-full px-4 py-3 text-sm bg-white shadow-sm rounded-xl outline-none focus:shadow-md focus:ring-2 focus:ring-orange-400/30 transition-all duration-200 resize-none" />
@@ -785,7 +785,7 @@ export default function JSKWebsite() {
               const val = input?.value?.trim()
               if (!val) return
               const subject = encodeURIComponent('Newsletter Subscription Request')
-              const body = encodeURIComponent(`Hi JSX Enterprises,\n\nPlease add me to your newsletter.\n\nEmail: ${val}\n\nThank you.`)
+              const body = encodeURIComponent(`Hi JSK Enterprises,\n\nPlease add me to your newsletter.\n\nEmail: ${val}\n\nThank you.`)
               window.location.href = `mailto:mktg.jsk@gmail.com?subject=${subject}&body=${body}`
             }}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-md mx-auto"
@@ -834,9 +834,8 @@ export default function JSKWebsite() {
                 { title: 'Company',  links: [
                   { label: 'About Us',       href: '/#about'   },
                   { label: 'Our Team',       href: '/#about'   },
-                  { label: 'Careers',        href: '/#contact' },
-                  { label: 'Contact Us',     href: '/#contact' },
-                  { label: 'Privacy Policy', href: '/JSK_Privacy_Policy.docx', download: true },
+                  { label: 'Careers',    href: '/#contact' },
+                  { label: 'Contact Us', href: '/#contact' },
                 ]},
                 { title: 'Services', links: ['Plumbing','Fire Fighting','Water Treatment','Waste Water','AMC / O&M'].map(l => ({ label: l, href: '/services' })) },
                 { title: 'Products', links: ['Filters','Instruments','Spares & Chemicals','Equipment'].map(l => ({ label: l, href: '/#products' })) },
@@ -847,10 +846,7 @@ export default function JSKWebsite() {
                   <ul className="space-y-2">
                     {col.links.map(item => (
                       <li key={item.label}>
-                        {'download' in item && item.download
-                          ? <a href={item.href} download className="text-xs text-slate-400 hover:text-orange-600 transition-colors duration-200 leading-relaxed">{item.label}</a>
-                          : <Link href={item.href} className="text-xs text-slate-400 hover:text-orange-600 transition-colors duration-200 leading-relaxed">{item.label}</Link>
-                        }
+                        <Link href={item.href} target={item.href.startsWith('/privacy') || item.href.startsWith('/terms') ? '_blank' : undefined} rel={item.href.startsWith('/privacy') || item.href.startsWith('/terms') ? 'noopener noreferrer' : undefined} className="text-xs text-slate-400 hover:text-orange-600 transition-colors duration-200 leading-relaxed">{item.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -861,12 +857,9 @@ export default function JSKWebsite() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-slate-400">
-          <p>© {new Date().getFullYear()} Jsk Enterprises.By kalaakari Adda
-
-    2026 Jsk Water technology.All rights reserved </p>
+          <p>© {new Date().getFullYear()} JSK Enterprises. By kalaakari Adda · JSK Water Technology. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="/JSK_Terms_Conditions.docx"  download className="hover:text-orange-600 transition-colors duration-200">Terms</a>
-            <a href="/JSK_Privacy_Policy.docx"    download className="hover:text-orange-600 transition-colors duration-200">Privacy</a>
+            <Link href="/terms" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 transition-colors duration-200">Terms & Policy</Link>
           </div>
         </div>
       </footer>

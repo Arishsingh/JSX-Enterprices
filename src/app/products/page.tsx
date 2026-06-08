@@ -71,7 +71,7 @@ export default function ProductsPage() {
       {/* Top bar */}
       <div className="border-b border-slate-100 px-4 sm:px-8 h-14 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-[15px] font-semibold text-slate-800 tracking-tight">JSX</span>
+          <span className="text-[15px] font-semibold text-slate-800 tracking-tight">JSK</span>
           <span className="text-slate-200 text-lg font-thin">|</span>
           <span className="text-[13px] text-slate-400">Products & Equipment</span>
         </div>

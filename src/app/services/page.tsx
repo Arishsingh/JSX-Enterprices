@@ -84,7 +84,7 @@ export default function ServicesPage() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center shrink-0">
-            <Image src="/a.png" alt="JSX Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
+            <Image src="/a.png" alt="JSK Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
           </Link>
           <Link
             href="/"

@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08)">
         <tr>
           <td style="background:#1e293b;padding:24px 32px">
-            <p style="margin:0;color:#ffffff;font-size:18px;font-weight:700;letter-spacing:-0.3px">JSX Enterprises</p>
+            <p style="margin:0;color:#ffffff;font-size:18px;font-weight:700;letter-spacing:-0.3px">JSK Enterprises</p>
             <p style="margin:4px 0 0;color:#94a3b8;font-size:13px">New Enquiry Received</p>
           </td>
         </tr>
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
   try {
     await transporter.sendMail({
-      from: `"JSX Enterprises" <${process.env.GMAIL_USER}>`,
+      from: `"JSK Enterprises" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
       replyTo: email,
       subject: `New Enquiry — ${service || 'General'} from ${email}`,

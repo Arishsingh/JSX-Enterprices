@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, FileText, Download } from 'lucide-react'
+import { ArrowLeft, FileText, ExternalLink } from 'lucide-react'
+import Footer from '@/components/footer/Footer'
 
 export default function PrivacyPage() {
   return (
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center shrink-0">
-            <Image src="/a.png" alt="JSX Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
+            <Image src="/a.png" alt="JSK Enterprises" width={160} height={56} className="h-12 md:h-14 w-auto object-contain" priority />
           </Link>
           <Link href="/" className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-orange-600 transition-colors group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
@@ -43,23 +44,22 @@ export default function PrivacyPage() {
           </div>
           <a
             href="/JSK_Privacy_Policy.docx"
-            download="JSK_Privacy_Policy.docx"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-full bg-orange-600 hover:bg-orange-700 text-white px-6 h-10 text-sm font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 shrink-0"
           >
-            <Download className="w-4 h-4" />
-            Download
+            <ExternalLink className="w-4 h-4" />
+            Open
           </a>
         </div>
 
         <p className="mt-6 text-xs text-slate-400 text-center">
-          The document will open in Microsoft Word or any compatible document viewer.
+          The document will open in a new tab.
         </p>
 
       </main>
 
-      <footer className="mt-12 border-t border-slate-100 py-8 text-center">
-        <p className="text-xs text-slate-400">© {new Date().getFullYear()} JSK Enterprises. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   )
 }

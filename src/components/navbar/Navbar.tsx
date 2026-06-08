@@ -52,7 +52,7 @@ export default function Navbar() {
 
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="leading-none">
-              <div className={`text-[18px] font-bold tracking-tight leading-none transition-colors ${!scrolled ? 'text-white' : 'text-slate-900'}`}>JSX</div>
+              <div className={`text-[18px] font-bold tracking-tight leading-none transition-colors ${!scrolled ? 'text-white' : 'text-slate-900'}`}>JSK</div>
               <div className={`text-[8px] font-semibold tracking-[0.2em] uppercase leading-none mt-[3px] transition-colors ${!scrolled ? 'text-white/55' : 'text-slate-500'}`}>Enterprises</div>
             </div>
             <InfinityNavIcon light={!scrolled} />
@@ -116,7 +116,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
                 <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                   <div className="leading-none">
-                    <div className="text-[18px] font-bold text-slate-900 tracking-tight leading-none">JSX</div>
+                    <div className="text-[18px] font-bold text-slate-900 tracking-tight leading-none">JSK</div>
                     <div className="text-[8px] font-semibold tracking-[0.2em] uppercase text-slate-400 leading-none mt-[3px]">Enterprises</div>
                   </div>
                   <InfinityNavIcon light={false} />
