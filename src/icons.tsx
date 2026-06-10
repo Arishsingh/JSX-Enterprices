@@ -35,15 +35,6 @@ export function IconYoutube({ className }: { className?: string }) {
   )
 }
 
-export function WaterDropNavIcon() {
-  return (
-    <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
-      <path d="M13 1C13 1 1.5 12.5 1.5 20C1.5 26.35 6.65 31.5 13 31.5C19.35 31.5 24.5 26.35 24.5 20C24.5 12.5 13 1 13 1Z" fill="#4A7C59" fillOpacity="0.92" />
-      <path d="M7 20C7 16.5 9.5 13.2 12.5 11.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.65" />
-      <path d="M10 25C11.5 26.2 14.5 26.2 16 25" stroke="white" strokeWidth="1.4" strokeLinecap="round" opacity="0.4" />
-    </svg>
-  )
-}
 
 export function InfinityNavIcon({ light = false }: { light?: boolean }) {
   const stroke = light ? 'white' : '#3D2C8D'
