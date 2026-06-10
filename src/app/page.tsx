@@ -857,7 +857,7 @@ export default function JSKWebsite() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-slate-400">
-          <p>© {new Date().getFullYear()} JSK Enterprises. All rights reserved. Designed and Developed by KALAAKARI ADDA (Only K and A capital)</p>
+          <p>© {new Date().getFullYear()} JSK Enterprises. All rights reserved. Designed and Developed by Kalaakari Adda </p>
           <div className="flex gap-4">
             <Link href="/terms" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 transition-colors duration-200">Terms & Policy</Link>
           </div>
